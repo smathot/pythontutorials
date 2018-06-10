@@ -1,0 +1,21 @@
+!!python/object/apply:collections.OrderedDict
+- - - Getting started
+    - /getting-started
+  - - Basics
+    - !!python/object/apply:collections.OrderedDict
+      - - - Syntax
+          - /syntax
+        - - 'Iterables: list, dict, and tuple'
+          - /iterables
+        - - Loops
+          - /loops
+        - - Functions
+          - /functions
+        - - Modules
+          - /modules
+        - - Exceptions
+          - /exceptions
+  - - Forum
+    - http://forum.cogsci.nl/categories/misc
+  - - Blog
+    - http://www.cogsci.nl/
