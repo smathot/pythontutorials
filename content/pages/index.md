@@ -1,10 +1,16 @@
-title: You're about to learn Python!
+title: Learn Python!
+next_title: Get started
+next_url: %url:get-started%
 
-Welcome! Python is a beautiful programming language, and with the help of the tutorials on this site, you will learn the basics of Python code in no time!
+Congratulations, you're about to learn Python!
 
-If you do not have a Python environment set up yet, or don't even know what this means, then visit:
+[Python](http://www.python.org/) is a widely used programming language that is intuitive and easy to learn. From researchers to independent developers to large companies such as Facebook and DropBox: they all rely on Python. And for good reasons.
 
-- [Getting started](%url:getting-started%)
+The goal of this website is to provide an accessible introduction to Python for beginners.
+
+If you do not have a Python environment set up yet (or don't even know what this means!) then let's first:
+
+- [Get started](%url:get-started%)
 
 Once you're all set up, dive right in with one of the basic tutorials:
 

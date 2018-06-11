@@ -48,7 +48,7 @@ except: # A blank except is not preferred!
 
 In the example above, if any `Exception` occurs in the block that follows the `try` statement, then the execution of that block is terminated, and the `except` block is executed.
 
-It is good practice to specify which `Exception`s should be caught specifically. For example, `oneover()` can trigger a `ZeroDivisionError` error when we call it with `0` and a `TypeError` when we call it with a `str` or some other value that doesn't work in a numeric division. Therefore, we can specify that we want to catch only those two `Exception`s, and in addition specify that we want to keep the `Exception` object as the variable `e`.
+It is good practice to specify *which* `Exception`s should be caught specifically. For example, `oneover()` can trigger a `ZeroDivisionError` error when we call it with `0` and a `TypeError` when we call it with a `str` or some other value that doesn't work in a numeric division. Therefore, we can specify that we want to catch only those two `Exception`s, and in addition specify that we want to keep the `Exception` object as the variable `e`. Restricting exception handling in this way avoids masking of errors that we did not anticipate, and which may reflects bugs in our code.
 
 
 ```python
@@ -62,7 +62,19 @@ except (TypeError, ZeroDivisionError) as e:
 
 ### Re-raising (from)
 
-We can also pass the `Exception` on after catching it, by doing a blank `raise`. Or a `raise … from` (only in Python 3).
+We can also pass the `Exception` on after catching it, by doing a blank `raise`.
+
+
+```python
+try:
+  i = oneover(0)
+except ZeroDivisionError as e:
+  print('Oops!')
+  raise
+```
+
+
+Or, in Python 3 only, you can do a `raise … from`.
 
 
 ```python
@@ -73,9 +85,10 @@ except ZeroDivisionError as e:
 
 ```
 
+
 ### else … finally
 
-There is also an `else` block! This is executed when *no* `Exception` occurred during the `try` block. And finally there is also a `finally` block! This is always executed, and can be used to perform clean-up operations etc.
+The `else` block of a `try … except` is executed when *no* `Exception` occurred during the `try` block. And finally there is a `finally` block, which is always executed, regardless of whether or not an `Exception` occurred, and can be used to perform clean-up operations etc.
 
 
 ```python
@@ -88,6 +101,7 @@ else:
 finally:
     print('This is always executed')
 ```
+
 
 ## Raising `Exception`s
 
@@ -121,3 +135,24 @@ def factorial(n):
 
 factorial(-1)
 ```
+
+
+## Exercise: Your own calculator
+
+Write a calculator application that asks the user for input. This input is assumed to be a formula that consist of a number, an operator (at least `+` and `-`), and another number, separated by white space. Split the user input using [`str.split()`](https://docs.python.org/3/library/stdtypes.html#str.split), and check whether the resulting `list` is valid:
+
+- If the input does not consist of 3 elements, raise a `FormulaError`, which is a custom `Exception`.
+- Try to convert the first and third input to a `float` (like so: `float_value = float(str_value)`). Catch any `ValueError` that occurs, and instead raise a `FormulaError`
+- If the second input is not `'+'` or `'-'`, again raise a `FormulaError`
+
+If the input is valid, perform the calculation and print out the result. Then, the user is prompted to provide new input, until the user enters 'quit'.
+
+The resulting interaction would like this:
+
+~~~
+>>> 1 + 1
+2.0
+>>> 3.2 - 1.5
+1.7000000000000002
+>>> quit
+~~~

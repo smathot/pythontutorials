@@ -1,4 +1,6 @@
-title: Loops
+title: Loops: for and while
+next_title: Functions
+next_url: %url:functions%
 
 
 [TOC]
@@ -6,7 +8,7 @@ title: Loops
 
 ## The `for` loop
 
-A `for` loop is a way to run a block of code for each element in an iterable object, such as a `list`. Just as the `if` statement, the `for` statement ends with a colon, and the followed code block is defined by indentation:
+A `for` loop runs a block of code for each element in an iterable object, such as a `list`. Analogous to the `if` statement, the `for` statement ends with a colon, and the following code block is defined by indentation:
 
 
 ```python
@@ -15,43 +17,29 @@ for prime in prime_numbers:
     print(prime)
 ```
 
-If you loop through a `dict`, you loop through its keys. To loop through the keys and the values at the same time, you can use the `dict.items()` function, which loops over key, value tuples.
+If you loop through a `dict`, you loop through its keys. To loop through the keys and the values at the same time, you can use the `dict.items()` function, which returns an iterable of key, value tuples.
 
 
 ```python
-people_with_ages = {
-    'Jay-Z' : 47,
-    'Emanuel Macron' : 40
+ages = {
+    'Jay-Z': 47,
+    'Emanuel Macron': 40
 }
-for name, age in people_with_ages.items():
+for name, age in ages.items():
     print('{0} is {1} years old'.format(name, age))
 ```
-
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Loop through all odd numbers, raise them to the power of two, create a new `list` called `power_2` containing the resulting numbers, and print out this new list.
-</div>
-
 
 ## The `while` loop
 
 A `while` loop is a way to run a block of code until a particular condition is no longer `True`. The syntax is by now familiar:
 
 
-```python
-i = 0
-while i < 5:
-    print(i)
-    i += 1 # A shortcut for i = i + 1
-```
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Remove (`pop()`) elements from `power_2` and print them out, until `power_2` is empty. Make use of the fact that an empty `list` equals `False` whereas a non-empty `list` equals `True`.
-</div>
+~~~ .python
+user_input = ''
+while user_input != 'quit':
+    user_input = input('>>> ')
+    print('The user said: {0}'.format(user_input))
+~~~
 
 
 ## `continue`: abort one iteration
@@ -60,19 +48,13 @@ The `continue` statement, which you can use in `for` and `while` loops (but nowh
 
 
 ```python
-CITIES = ['Berlin', 'São Paulo', 'Tokyo', 'New York']
-CAPITALS = ['Berlin', 'Tokyo']
-for city in CITIES:
-    if city not in CAPITALS:
+cities = ['Berlin', 'São Paulo', 'Tokyo', 'New York']
+capitals = ['Berlin', 'Tokyo']
+for city in cities:
+    if city not in capitals:
         continue
     print('{0} is a capital'.format(city))
 ```
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Define a `list` of your friends' names. Loop through this list, and use `continue` to print out only those that do not start with a vowel.
-</div>
 
 
 ## `break`: abort a loop
@@ -93,3 +75,71 @@ __Exercise__
 
 Take the `list` of your friend's names. One of these friends is now your BFF (best friend forever). Loop through the `list` of names, and use `break` to print the names out until you've found the name of your BFF.
 </div>
+
+
+## Useful functions
+
+### range(): iterate through a range of values
+
+`range()` corresponds to a range of numbers. The simplest and most common use case is to specify only a stop value, which is exclusive (i.e. `range(3)` does not include `3`!):
+
+```python
+for i in range(3):
+  print(i)
+```
+
+However, you can also specify a start value and a step size:
+
+```python
+from_value = 1
+to_value = 4
+step_size = 2
+for i in range(from_value, to_value, step_size):
+  print(i)
+```
+
+
+### enumerate(): iterate and count
+
+`enumerate()` takes an iterable object, and returns another iterable in which each element is paired with a counter variable.
+
+```python
+cities = ['Berlin', 'São Paulo', 'Tokyo', 'New York']
+for i, city in enumerate(cities):
+  print('{0}: {1}'.format(i, city))
+```
+
+
+### zip(): iterate through multiple iterables
+
+`zip()` takes one or more iterable objects, and returns another iterable in which elements from the original iterables are paired. This allows you to iterate through multiple iterables at the same time. The zipped iterable is as long as the shortest of the original iterables.
+
+
+```python
+artists = 'The Beatles', 'Elvis Presley', 'Michael Jackson', 'Madonna'
+sales = 600e6, 600e6, 350e6, 300e6
+for artist, sold in zip(artists, sales):
+  print('{0} sold {1} records'.format(artist, sold))
+```
+
+
+## Exercises
+
+
+### Fibonacci
+
+Calculate the [Fibonacci series](https://en.wikipedia.org/wiki/Fibonacci_number) up to 1,000. Print out each Fibonacci number including its position in the series. Like so:
+
+~~~
+0: 1
+1: 1
+2: 2
+3: 3
+4: 5
+etc.
+~~~
+
+
+### Best-selling artists
+
+Do the following until the user enters `quit`: Ask the name of an artist. Look up the number of sales of this artist in a `dict`, and print out the result if this number is known. If the number of sales is unknown, ask the user to enter the number of sales, and update the `dict` accordingly.

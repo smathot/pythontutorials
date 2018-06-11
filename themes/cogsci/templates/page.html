@@ -35,11 +35,14 @@ This page needs to be reviewed.
 </div>
 {% endif %}
 
+
+{% if page.next_title %}
 <div class="osdoc-edit-link">
-	<a role="button" class="btn btn-default" href="{{ page.source_path|replace(ROOT_PATH, GITHUB_ROOT_URL) }}">
-		Edit on GitHub
+	<a role="button" class="btn btn-default" href="{{ page.next_url }}">
+		{{ page.next_title }} >>
 	</a>
 </div>
+{% endif %}
 
 {% if page.show_title != "false" %}
 <h1>{{page.title}}</h1>

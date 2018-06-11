@@ -1,78 +1,77 @@
 title: Functions
+next_title: Modules
+next_url: %url:modules%
 
 
 [TOC]
 
 
-In computer-science, a function is a block of code with a name. The main goal of functions is to make code *re-usable*.
+## Functions: what and why?
 
-Let's do a little Pythagoras again: Say that you want calculate the length of the long side (`c`) of a right triangle with short sides (`a` and `b`) of length 1. For some reason, you want to do this three times, printing out the result each time.
+A *function* is a re-usable block of code, typically with a name. The main goal of functions is to avoid duplication of code. Another important goal of functions is to divide code into bits with a clearly defined function; doing so can drastically improve the readability of your code.
+
+Say that you want calculate the length of the long side `c` of a right triangle with short sides `a` and `b`, using [Pythagoras' theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem). You have a list (`some_triangles`) of `a, b` tuples, which you can easily iterate through to determine the corresponding long sides `c`.
 
 
 ```python
-# Once
-a = b = 1
-long_side = (a ** 2 + b ** 2) ** .5
-print('Long side = {0}'.format(long_side))
-# Twice
-a = b = 1
-long_side = (a ** 2 + b ** 2) ** .5
-print('Long side = {0}'.format(long_side))
-# Three times
-a = b = 1
-long_side = (a ** 2 + b ** 2) ** .5
-print('Long side = {0}'.format(long_side))
+some_triangles = (1, 1), (1, 2), (2, 2)
+for a, b in some_triangles:
+  c = (a ** 2 + b ** 2) ** .5
+  print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 ```
+
+So far there is little duplication, and hence no real need for a function. But now say that you want to do *almost* the same thing again, for another `list` (`more_triangles`) of `a, b` tuples. To do this without a function, we would have to copy-paste our code, resulting in duplication:
+
+
+```python
+some_triangles = (1, 1), (1, 2), (2, 2)
+for a, b in some_triangles:
+  c = (a ** 2 + b ** 2) ** .5
+  print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
+more_triangles = (3, 3), (3, 4), (4, 4)
+for a, b in more_triangles:
+  c = (a ** 2 + b ** 2) ** .5
+  print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
+```
+
+When you see code like this, with so much duplication, then you know that a function is likely to improve it. Let's see, step by step, how we can do so.
+
 
 ## `def`: defining a function
 
-When you see code like above, with so much duplication in it, then you know that a function is likely to improve it. In Python, you define a function with the `def` statement, followed by the name of the function and parentheses. Like any statement that is followed by an indented code block, the line ends with a colon.
+You define a function with the `def` statement, followed by the name of the function and parentheses. Like any statement that is followed by an indented code block, the line ends with a colon.
 
-Let's define a `pythagoras()` function that (for now) calculates the long side (`c`) of a triangle with short sides (`a` and `b`) of length 1, and prints out the result.
+To start, let's define a `pythagoras()` function that (for now) calculates the long side (`c`) of a triangle with short sides (`a` and `b`) of length 1, and prints out the result.
 
 
 ```python
 def pythagoras():
 
     a = b = 1
-    long_side = (a ** 2 + b ** 2) ** .5
-    print('Long side = {0}'.format(long_side))
+    c = (a ** 2 + b ** 2) ** .5
+    print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 
 
-pythagoras()
-pythagoras()
 pythagoras()
 ```
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Define a function, `count_words()`, that reads a string of user input, splits the string into a list of words (assuming that words are separated by whitespace, using `str.split()`), and prints out the number of words in the string. Then call this function two times.
-</div>
 
 
 ## Arguments and return values
 
 ### Function arguments
 
-Most functions take one or more *arguments*. That is, you pass one or more variables to the function, and the functions performs some operation on or with these variables. For example:
+The `pythagoras()` function defined above is not very useful, because it lacks flexibility. It calculates the long side `c`, but *only* for short sides `a = 1` and `b = 1`. To make the function more flexible, you can add *arguments*. That is, you pass one or more variables to the function, and the functions performs some operation on or with these variables.
 
 
 ```python
-def pythagoras_2(a, b):
+def pythagoras(a, b):
 
-    long_side = (a ** 2 + b ** 2) ** .5
-    print('The long side is {0}'.format(long_side))
+  c = (a ** 2 + b ** 2) ** .5
+  print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 
 
-pythagoras_2(1, 1)
+pythagoras(1, 1)
 ```
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Define the function `count_words_2()` such that it takes a single `str` as an argument, and prints out the number of words in this `str`. Call this function twice with different `str` arguments.
-</div>
 
 
 ### Default function arguments (keywords)
@@ -83,20 +82,14 @@ We can redefine the Pythagoras function such that the `a` and `b` arguments are 
 
 
 ```python
-def pythagoras_3(a=1, b=1):
+def pythagoras(a=1, b=1):
 
-    long_side = (a ** 2 + b ** 2) ** .5
-    print('The long side is {0}'.format(long_side))
+  c = (a ** 2 + b ** 2) ** .5
+  print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 
 
-pythagoras_3()
+pythagoras()
 ```
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Define the function `count_words_3()` such that it takes a single `str` as a keyword argument, with a default value of `''` (empty string), and prints out the number of words. Call `count_words_3()` several times with different arguments, and without any argumetns, to see if it works.
-</div>
 
 
 ### Return values
@@ -107,33 +100,70 @@ We can redefine the Pythagoras function such that it does not print the length o
 
 
 ```python
-def pythagoras_4(a=1, b=1):
+def pythagoras(a=1, b=1):
 
-    return (a ** 2 + b ** 2) ** .5
+  return (a ** 2 + b ** 2) ** .5
 
 
-long_side = pythagoras_4(1, 1)
-print('The long side is {0}'.format(long_side))
+a = b = 1
+c = pythagoras(a, b)
+print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 ```
-
-<div class='info-box' markdown=1>
-__Exercise__
-
-Define the function `count_words_4()` such that it takes a single `str` as a keyword argument, with a default value of `''` (empty string), and returns the number of words in the `str`. Call `count_words_4()` several times with different arguments, and without any arguments, and print the return value each time, to see if it works.
-</div>
 
 
 ## Docstrings
 
-A documentation string, or *docstring*, is a `str` that directly follows the `def` line. This allows you to describe what the function does. In most cases, a docstring will be a multiline string.
-
-*It is best practice to document all but the most trivial functions with a clear docstring!*
+A documentation string, or *docstring*, is a `str` that directly follows the `def` line. This allows you to describe what the function does. In most cases, a docstring will be a multiline string. It is best practice to document all but the most trivial functions with a clear docstring!
 
 
 ```python
-def pythagoras_5(a=1, b=1):    
+def pythagoras(a=1, b=1):    
     """Returns the length of the long side of a right triangle
-    given the two short sides a and b.
+    given two short sides a and b.
     """
     return (a ** 2 + b ** 2) ** .5
 ```
+
+
+## Functions that call functions
+
+All but the most trivial programs consist of functions that call other functions that call yet other functions, etc. Returning to the example that we started with, we could rewrite this code to make use of functions, thus avoiding duplication and making the logic of the code clearer.
+
+
+```python
+def pythagoras(a=1, b=1):
+  """Returns the length of the long side of a right triangle
+  given two short sides a and b.
+  """
+  return (a ** 2 + b ** 2) ** .5
+
+
+def print_long_sides(short_sides):
+  """Takes a list of (a, b) tuples, corresponding to the short
+  sides of a right triangle, and prints out the corresponding
+  long side (c).
+  """
+  for a, b in short_sides:
+    c = pythagoras(a, b)
+    print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
+
+
+some_triangles = (1, 1), (1, 2), (2, 2)
+more_triangles = (3, 3), (3, 4), (4, 4)
+print_long_sides(some_triangles)
+print_long_sides(more_triangles)
+```
+
+
+## Exercises
+
+### Factorial using for
+
+The [factorial](https://en.wikipedia.org/wiki/Factorial) (`!`) of a positive integer number is the product of all numbers from 1 up to and including the number itself. So `3! == 3 × 2 × 1`. By convention, `0! == 1`. The factorial of negative numbers is undefined.
+
+Define a function that takes a number as an argument, and returns the factorial for that number. The function can assume that the input is a non-negative integer. Use a `for` loop inside the function.
+
+
+### Factorial using recursion
+
+When a function calls itself, this is called *recursion*. Define a factorial function that does *not* use a for loop, but calls itself.

@@ -1,17 +1,33 @@
 title: Basic Syntax
+next_title: Iterables
+next_url: %url:iterables%
+
 
 [TOC]
 
 
-## Input and Output
+## Input and output
 
-Let's start at the very beginning: by printing a message to the output using the `print()` function. You can do this by executing the following:
+### The standard input and output
+
+Programming is about communication between the user (or users) and the computer. Therefore, the computer needs to be able to communicate to you, that is, send *output*. And you need to be able to communicate to the computer, that is, provide *input*.
+
+The *standard output* is the default output channel of your program. If you're using Python from terminal, then whatever goes to the standard output will appear in the terminal; if you're using Python from within Spyder, then whatever goes to the standard output will appear in Spyder's IPython console; if you're using Python from within a Jupyter Notebook, then whatever goes to the standard output will appear in the notebook; etc. You generally don't have to worry about this: Your output will appear where you expect it to appear.
+
+Similarly, *the standard input* is the default input channel of your program. If you're using Python in an interactive environment, such as Spyder or a Jupyter Notebook, the user will be prompted to provide input whenever the program tries to read from the standard input. Again, you generally don't have to worry about this: User input will be handled as you'd expect it to.
+
+
+### print()
+
+You can print a message to the standard output with the `print()` function. (This accepts any variable type.)
 
 ```python
 print('Hello world!')
 ```
 
-One way (of many) to get text input from the user is with the `input()` function. This will return a `str` variable, which we will discuss below.
+### input()
+
+You can read text from the standard input with the `input()` function. (This returns a `str` variable, which we will discuss below.)
 
 ~~~ .python
 user_input = input()
@@ -21,7 +37,7 @@ print('The user said: {0}'.format(user_input))
 
 ## Comments
 
-A line that starts with a `#` is a *comment*. Comments do nothing, but serve to document your code. It is good practice to comment code that is not self-explanatory.
+A line that starts with a `#` is a *comment*. Comments only serve to document your code. It is good practice to comment code that is not self-explanatory. However, in many cases, well-written code is self-explanatory, and adding (too many) comments will only make it less clear.
 
 
 ```python
@@ -31,38 +47,28 @@ A line that starts with a `#` is a *comment*. Comments do nothing, but serve to 
 
 ## Variable assignment
 
-Python is *dynamically typed*, which means that you not need to explicitly indicate whether a variable will contain a number, a string, or something else. The variable's type is determined implicitly by the value that you assign to it. (We will meet different variable types below.)
+Python is *dynamically typed*, which means that you not need to explicitly indicate whether a variable is a number, a string, or something else. That doesn't mean that there are no variable types: There are, but the type of a variable is determined implicitly by the value that you assign (`=`) to it. (We will meet different variable types below.)
 
 
 ```python
-the_most_random_number = 7
-print(the_most_random_number)
+a = 1
+print(a)
 ```
 
-You can also assign a single value to multiple variables in a single statement:
+You can also assign a single value to multiple variables in a single statement. And you can even assign multiple values to multiple variables in a single statement:
 
 
 ```python
-# Equivalent to:
-# a = 1
-# b = 1
-a = b = 1
+b = c = 2
+d, e = 3, 4
 ```
 
-And even assign multiple values to multiple variables in a single statement:
-
-
-```python
-# Equivalent to:
-# a = 1
-# b = 2
-a, b = 1, 2
-```
+It is good practice to use variable names that are descriptive but not too long. For example, if a variable contains someone's age, the name `age` is preferable to `a` or (even worse) `x`. Variable names should be lowercase with words optionally separated by underscores, `like_this`. (Naming conventions such as this are described in the [PEP8] style guideline.)
 
 
 ## Constants
 
-A *constant* is a computer-science term for a variable that has a fixed value. In Python, real constants don't exist, because you can always change a variable. However, to indicate that a variable should be treated *as if* it were a constant, you can `CAPITALIZE_ITS_NAME`. Naming conventions such as this are described in the [PEP8] style guideline.
+A *constant* is a computer-science term for a variable that has a fixed value. In Python, real constants don't exist, because you can always change a variable. However, to indicate that a variable should be treated *as if* it were a constant, you can capitalize its name, `LIKE_THIS`.
 
 
 ```python
@@ -82,25 +88,19 @@ A `bool` (from *boolean*) is a variable type with only two values: `True` or `Fa
 ```python
 print(4 > 3)
 print(3 > 4)
-print(3 == 4)
+print(3 == 4) # The equality operator is a double equals sign!
 print(4 > 3 or 3 > 4)
 print(4 > 3 and not 3 > 4)
 ```
 
-<div class='info-box' markdown=1>
-__Exercise!__
-
-Verify that `PI` is neither smaller than 3 nor larger than 4, and print out the resulting `bool`.
-</div>
-
 
 ### `None`: a special kind of nothing
 
-`None` is a special kind of value that is a type of its own (`NoneType`). Its main function is to indicate that a value is missing. To check whether a value is `None`, the special `is` operator is often used (and considered more elegant), instead of the regular `==` comparison.
+`None` is a special kind of value that is a type of its own (`NoneType`). Its main function is to indicate that a value is missing. To check whether a value is `None`, the special `is` operator is often used (and considered more elegant) instead of the regular `==` comparison.
 
 ```python
-age_of_johnny_depp = None
-print('Is Johnny Depp ageless? {0}'.format(age_of_johnny_depp is None))
+age_depp = None
+print('Is Johnny Depp ageless? {0}'.format(age_depp is None))
 ```
 
 
@@ -110,19 +110,19 @@ Text strings (`str`) are indicated by putting text between single (`'`) or doubl
 
 
 ```python
-my_first_str = 'some text'
-my_second_str = "some text"
-my_first_multiline_str = '''Line 1
+a_str = 'some text'
+another_str = "some text"
+a_multiline_str = '''Line 1
 Line 2'''
-my_second_multiline_str = """Line 1
+another_multiline_str = """Line 1
 Line 2"""
 ```
 
-You often want to print out a string of text with some values inserted into it. You can do this by concatening (`+`) strings. Another and more elegant way is to use `str.format()`, which treats the string as a template, and inserts values into it.
+You often want to print out a string of text with some values inserted into it. You can do this by concatenating (`+`) strings. Another and more elegant way is to use `str.format()`, which treats the string as a template, and inserts values into it.
 
 
 ```python
-name = 'Sebastiaan'
+name = 'Audrey Tautou'
 print('My name is ' + name)
 print('My name is {0}'.format(name))
 ```
@@ -137,12 +137,6 @@ For a complete list of `str` functions, see:
 
 - <https://docs.python.org/3/library/stdtypes.html#string-methods>
 
-<div class='info-box' markdown=1>
-__Exercise__
-
-Use string formatting to print out: *Side c of the right triangle is of length 4.47213595499958*
-</div>
-
 
 ### `int` and `float`: numbers
 
@@ -151,7 +145,7 @@ The two main numeric types are:
 - `int` for integer numbers (without decimals)
 - `float` for floating-point numbers (with decimals)
 
-Python automatically determines whether something is an `int` or a `float`.
+Python automatically determines whether a value is an `int` or a `float`.
 
 ```python
 my_int = 7
@@ -175,38 +169,20 @@ print('first_multiply_then_add is {0}'.format(first_multiply_then_add))
 print('first_add_then_multiply is {0}'.format(first_add_then_multiply))
 ```
 
-The `float` type also supports two special values:
+The `float` type has two special values:
 
 - `nan` is *not a number* and is generally used to indicate missing data in numeric computation. It is conceptually similar to `None`, with one important difference: `nan` is the only value that is unequal to itself!
 -  `inf` is used to express infinite numbers. You will rarely encounter `inf`, unless you're doing specific kinds of mathematical computations.
 
-<div class='info-box' markdown=1>
-__Exercise__
-
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pythagorean.svg/390px-Pythagorean.svg.png)
-
-Imagine the above right triangle and:
-
-
-- Assign the number `2` to the variable `a`
-- Assign the number `4` to the variable `b`
-- Use Pythagoras to assign the correct value to `c`
-- Print out `c`
-</div>
-
 
 ## Conditional (`if`) statements
 
-An `if` statement is the most basic form of flow control: it allows you to check whether some condition is met, and if so do something.
+An `if` statement is the most basic form of flow control. It allows you to check whether some condition is `True`, and if so do something. If the condition is `False`, either nothing is done (if there is no `else` block), or something `else` is done:
 
 ```python
 if 2 * 2 == 4:
     print('Two times to equals four')
-```
 
-If the condition is not met, either nothing is done, or something `else` is done:
-
-```python
 if 1 * 1 == 2:
     print('This is not printed')
 else:
@@ -214,13 +190,20 @@ else:
 ```
 
 Here we also see an important aspect of Python syntax: colons and indentation. The `if` and `else` statements are followed
-by a colon (`:`). This indicates that a block of code will follow that is indented, typically by four spaces (as prescribed by [PEP8]) or a single tab. (But never mix different indentation styles in the same code!) This block ends when the indentation ends. Unlike many other programming languages, Python does not use curly braces or other ways of explicitly indicating the start and end of a block: this is done through indentation.
+by a colon (`:`). This indicates that a block of code will follow that is indented, typically by four spaces (as prescribed by [PEP8]) or a single tab. (But never mix different indentation styles in the same code!) The block ends when the indentation ends. Unlike many other programming languages, Python does not use curly braces or other ways to explicitly indicate the start and end of a block: blocks are defined entirely through indentation.
 
-<div class='info-box' markdown=1>
-__Exercise__
 
-Check if side `c` of the right triangle is larger or smaller than `4`, and print a message out to indicate the result (eg. 'c is larger than 4' or 'c is smaller than 4').
-</div>
+## Exercise: Pythagoras
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pythagorean.svg/390px-Pythagorean.svg.png)
+
+Imagine the above right triangle and:
+
+- Assign the number `2` to the variable `a`
+- Assign the number `4` to the variable `b`
+- Use Pythagoras theorem to assign the correct value to `c`
+- Use string formatting to print out: *The long side (c) has length 4.47213595499958*
+- If `c` is larger than `PI` (a constant), also print out: *And this is longer than PI*
 
 
 [PEP8]: PEP8)[https://www.python.org/dev/peps/pep-0008/

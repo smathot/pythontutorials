@@ -1,9 +1,17 @@
 title: Modules
+next_title: Exceptions
+next_url: %url:exceptions%
 
+
+[TOC]
+
+
+## The Python standard library
 
 So far, we've only used functions that are built into Python, and that you can use straight away when you start a Python interpreter. However, you can `import` modules to get additional functionality. Many common modules are included in Python by default so that you don't need to install them explicitly; these make up the Python standard library:
 
 - <https://docs.python.org/3/library/index.html>
+
 
 ## `import`: importing modules
 
@@ -51,8 +59,13 @@ print(rnd.choice(prime_numbers))
 ```
 
 
-<div class='info-box' markdown=1>
-__Exercise__
+## Exercises
 
-Use the `statistics` module to calculate the mean of all prime numbers below 10. Print out the result.
-</div>
+### Some simple statistics
+
+Use the `statistics` module to calculate the mean of all prime numbers below 10.
+
+
+### Files and folders
+
+Use the `os` and `os.path` modules to list the contents of your Downloads folder, and indicate for each item whether it's a file or a folder.
