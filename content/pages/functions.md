@@ -8,9 +8,9 @@ next_url: %url:modules%
 
 ## Functions: what and why?
 
-A *function* is a re-usable block of code, typically with a name. The main goal of functions is to avoid duplication of code. Another important goal of functions is to divide code into bits with a clearly defined function; doing so can drastically improve the readability of your code.
+A *function* is a re-usable code block, typically with a name. The main goal of functions is to avoid duplication of code. Another important goal of functions is to divide code into parts with clearly defined functions; doing so can drastically improve the readability of your code.
 
-Say that you want calculate the length of the long side `c` of a right triangle with short sides `a` and `b`, using [Pythagoras' theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem). You have a list (`some_triangles`) of `a, b` tuples, which you can easily iterate through to determine the corresponding long sides `c`.
+Say that you want calculate the length of the long side `c` of a right triangle with short sides `a` and `b`, using [Pythagoras' theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem). And say that you have a list (`some_triangles`) of `a, b` tuples, which you can easily iterate through to determine the corresponding long sides `c`.
 
 
 ```python
@@ -20,7 +20,7 @@ for a, b in some_triangles:
   print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 ```
 
-So far there is little duplication, and hence no real need for a function. But now say that you want to do *almost* the same thing again, for another `list` (`more_triangles`) of `a, b` tuples. To do this without a function, we would have to copy-paste our code, resulting in duplication:
+So far there is no code duplication, and hence no real need for a function. But now say that you want to do *almost* the same thing again, for another `list` (`more_triangles`) of `a, b` tuples. To do this without a function, we would have to copy-paste our code, resulting in code duplication:
 
 
 ```python
@@ -34,14 +34,15 @@ for a, b in more_triangles:
   print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 ```
 
-When you see code like this, with so much duplication, then you know that a function is likely to improve it. Let's see, step by step, how we can do so.
+
+When you see this kind of code duplication, then you know that a function is likely to improve your code. Let's see, step by step, how we can accomplish this.
 
 
-## `def`: defining a function
+## def: defining a function
 
-You define a function with the `def` statement, followed by the name of the function and parentheses. Like any statement that is followed by an indented code block, the line ends with a colon.
+A function is defined with the `def` statement, followed by the name of the function and parentheses. Like any statement that is followed by an indented code block, the statement ends with a colon.
 
-To start, let's define a `pythagoras()` function that (for now) calculates the long side (`c`) of a triangle with short sides (`a` and `b`) of length 1, and prints out the result.
+Let's define a `pythagoras()` function that (for now) calculates the long side (`c`) of a triangle with short sides (`a` and `b`) of length 1, and prints out the result. We execute the function by calling its name followed by parentheses.
 
 
 ```python
@@ -52,7 +53,7 @@ def pythagoras():
     print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 
 
-pythagoras()
+pythagoras() # Call the function
 ```
 
 
@@ -60,7 +61,7 @@ pythagoras()
 
 ### Function arguments
 
-The `pythagoras()` function defined above is not very useful, because it lacks flexibility. It calculates the long side `c`, but *only* for short sides `a = 1` and `b = 1`. To make the function more flexible, you can add *arguments*. That is, you pass one or more variables to the function, and the functions performs some operation on or with these variables.
+The `pythagoras()` function defined above is not very useful, because it lacks flexibility. It calculates the long side `c`, but *only* for short sides `a = 1` and `b = 1`. To make the function more flexible, you can add *arguments*. That is, you pass one or more variables to the function, and the function then performs some operation on or with these variables.
 
 
 ```python
@@ -76,9 +77,7 @@ pythagoras(1, 1)
 
 ### Default function arguments (keywords)
 
-Function arguments can have default values, so that you can, but do not have to, pass these arguments. Such arguments with default values are called *keywords*.
-
-We can redefine the Pythagoras function such that the `a` and `b` arguments are keywords with a default value of `1`.
+Function arguments can have default values, so that you can, but do not have to, pass these arguments. Such arguments with default values are called *keywords*. We can redefine `pythagoras()` such that the `a` and `b` arguments are keywords with a default value of `1`.
 
 
 ```python
@@ -94,9 +93,7 @@ pythagoras()
 
 ### Return values
 
-Many functions also have *return values*, that is, they communicate a variable back to the location where they calledfrom.
-
-We can redefine the Pythagoras function such that it does not print the length of the long side directly, but rather `return`s it.
+Many functions also have *return values*, that is, they communicate a value back to where they were called from. We can redefine `pythagoras()` such that it doesn't print the length of the long side directly, but rather `return`s it.
 
 
 ```python
@@ -127,7 +124,7 @@ def pythagoras(a=1, b=1):
 
 ## Functions that call functions
 
-All but the most trivial programs consist of functions that call other functions that call yet other functions, etc. Returning to the example that we started with, we could rewrite this code to make use of functions, thus avoiding duplication and making the logic of the code clearer.
+Most programs consist of functions that call other functions that call yet other functions, etc. Returning to the example that we started with, we could rewrite this code to make use of functions, thus avoiding duplication and making the logic of the code clearer.
 
 
 ```python
@@ -171,6 +168,6 @@ Define a function that takes a number as an argument, and returns the factorial 
 
 ### Factorial using recursion
 
-When a function calls itself, this is called *recursion*. Define a factorial function that does *not* use a for loop, but calls itself.
+When a function calls itself, this is called *recursion*. Define a factorial function that does *not* use a `for` loop, but uses recursion.
 
 </div>
