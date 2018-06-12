@@ -206,11 +206,15 @@ For more information, see:
 
 ## Exercises
 
+<div class='info-box' markdown=1>
 
 ### Fibonacci
 
 Define a `fibonacci` `list` that corresponds to the [Fibonacci series](https://en.wikipedia.org/wiki/Fibonacci_number) up to 8. Then, use slicing to create two subseries: `even_fibonacci`, with all numbers at even indices (0, 2, etc.); and `odd_fibonacci`, with all numbers at odd indices (1, 3, etc.).
 
+</div>
+
+<div class='info-box' markdown=1>
 
 ### Best-selling artists
 
@@ -222,3 +226,5 @@ Define a `artists` `dict` with the names of the [four best-selling music artists
 4. Madonna with 300 million sales
 
 Then ask the user to enter the name of an artists. Look up the number of sales of the artist, falling back to 'unknown' if the artists is not in the `dict`, and print out the result.
+
+</div>

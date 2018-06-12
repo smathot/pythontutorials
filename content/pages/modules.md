@@ -61,11 +61,18 @@ print(rnd.choice(prime_numbers))
 
 ## Exercises
 
+<div class='info-box' markdown=1>
+
 ### Some simple statistics
 
 Use the `statistics` module to calculate the mean of all prime numbers below 10.
 
+</div>
+
+<div class='info-box' markdown=1>
 
 ### Files and folders
 
 Use the `os` and `os.path` modules to list the contents of your Downloads folder, and indicate for each item whether it's a file or a folder.
+
+</div>

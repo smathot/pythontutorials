@@ -137,7 +137,11 @@ factorial(-1)
 ```
 
 
-## Exercise: Your own calculator
+## Exercises
+
+<div class='info-box' markdown=1>
+
+### Your own calculator
 
 Write a calculator application that asks the user for input. This input is assumed to be a formula that consist of a number, an operator (at least `+` and `-`), and another number, separated by white space. Split the user input using [`str.split()`](https://docs.python.org/3/library/stdtypes.html#str.split), and check whether the resulting `list` is valid:
 
@@ -156,3 +160,5 @@ The resulting interaction would like this:
 1.7000000000000002
 >>> quit
 ~~~
+
+</div>

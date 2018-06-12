@@ -193,7 +193,11 @@ Here we also see an important aspect of Python syntax: colons and indentation. T
 by a colon (`:`). This indicates that a block of code will follow that is indented, typically by four spaces (as prescribed by [PEP8]) or a single tab. (But never mix different indentation styles in the same code!) The block ends when the indentation ends. Unlike many other programming languages, Python does not use curly braces or other ways to explicitly indicate the start and end of a block: blocks are defined entirely through indentation.
 
 
-## Exercise: Pythagoras
+## Exercises
+
+<div class='info-box' markdown=1>
+
+### Pythagoras
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pythagorean.svg/390px-Pythagorean.svg.png)
 
@@ -205,5 +209,6 @@ Imagine the above right triangle and:
 - Use string formatting to print out: *The long side (c) has length 4.47213595499958*
 - If `c` is larger than `PI` (a constant), also print out: *And this is longer than PI*
 
+</div>
 
 [PEP8]: PEP8)[https://www.python.org/dev/peps/pep-0008/

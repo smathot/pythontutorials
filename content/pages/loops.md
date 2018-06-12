@@ -125,6 +125,7 @@ for artist, sold in zip(artists, sales):
 
 ## Exercises
 
+<div class='info-box' markdown=1>
 
 ### Fibonacci
 
@@ -139,7 +140,12 @@ Calculate the [Fibonacci series](https://en.wikipedia.org/wiki/Fibonacci_number)
 etc.
 ~~~
 
+</div>
+
+<div class='info-box' markdown=1>
 
 ### Best-selling artists
 
 Do the following until the user enters `quit`: Ask the name of an artist. Look up the number of sales of this artist in a `dict`, and print out the result if this number is known. If the number of sales is unknown, ask the user to enter the number of sales, and update the `dict` accordingly.
+
+</div>
