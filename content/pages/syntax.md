@@ -8,31 +8,44 @@ next_url: %url:iterables%
 
 ## Input and output
 
-### The standard input and output
-
 Programming is about communication between the user (or users) and the computer. Therefore, the computer needs to be able to communicate to you, that is, send *output*. And you need to be able to communicate to the computer, that is, provide *input*.
-
-The *standard output* is the default output channel of your program. If you're using Python from terminal, then whatever goes to the standard output will appear in the terminal; if you're using Python from within Spyder, then whatever goes to the standard output will appear in Spyder's IPython console; if you're using Python from within a Jupyter Notebook, then whatever goes to the standard output will appear in the notebook; etc. You generally don't have to worry about this: Your output will appear where you expect it to appear.
-
-Similarly, *the standard input* is the default input channel of your program. If you're using Python in an interactive environment, such as Spyder or a Jupyter Notebook, the user will be prompted to provide input whenever the program tries to read from the standard input. Again, you generally don't have to worry about this: User input will be handled as you'd expect it to.
 
 
 ### print()
 
-You can print a message to the standard output with the `print()` function. (This accepts any variable type.)
+You can print a message to the *standard output* with the `print()` function. (`print()` accepts all the variable types that we will discuss below.)
 
 ```python
 print('Hello world!')
+print(10)
+print(True)
+print(None)
 ```
+
+The *standard output* is the default output channel of your program. If you're using Python from a terminal, then whatever goes to the standard output appears in the terminal; if you're using Python from within Spyder, then whatever goes to the standard output appears in Spyder's IPython console; if you're using Python from within a Jupyter Notebook, then whatever goes to the standard output appears in the notebook; etc.
+
+But you generally don't have to worry about this: Your output will appear where you expect it to appear.
+
 
 ### input()
 
-You can read text from the standard input with the `input()` function. (This returns a `str` variable, which we will discuss below.)
+You can read text from the standard input with the `input()` function. (This returns a `str` that you can assign to a variable, as we will discuss below.)
 
 ~~~ .python
-user_input = input()
-print('The user said: {0}'.format(user_input))
+user_input = input('>>> ')
+print(user_input)
 ~~~
+
+__Output:__
+
+~~~
+>>> Hello world!
+Hello world!
+~~~
+
+The *standard input* is the default input channel of your program. If you're using Python in an interactive environment, such as Spyder or a Jupyter Notebook, then the user is prompted to provide input whenever the program tries to read from the standard input.
+
+Again, you generally don't have to worry about this: User input will be handled as you'd expect it to.
 
 
 ## Comments
@@ -59,8 +72,8 @@ You can also assign a single value to multiple variables in a single statement. 
 
 
 ```python
-b = c = 2
-d, e = 3, 4
+b = c = 2 # b = 2; c = 2
+d, e = 3, 4 # d = 3; e = 4
 ```
 
 It is good practice to use variable names that are descriptive but not too long. For example, if a variable contains someone's age, the name `age` is preferable to `a` or (even worse) `x`. Variable names should be lowercase with words optionally separated by underscores, `like_this`. (Naming conventions such as this are described in the [PEP8] style guideline.)
@@ -80,7 +93,7 @@ PI = 3.14
 ## Common variable types
 
 
-### `bool`: True or False
+### bool: True or False
 
 A `bool` (from *boolean*) is a variable type with only two values: `True` or `False`. It is used for logical operations including, as you will see below, `if` statements. Many operations, such as `>`, `==`, and `!=`, result in a `bool`. There is also a special set of boolean operations: `and`, `or`, and `not`
 
@@ -94,17 +107,7 @@ print(4 > 3 and not 3 > 4)
 ```
 
 
-### `None`: a special kind of nothing
-
-`None` is a special kind of value that is a type of its own (`NoneType`). Its main function is to indicate that a value is missing. To check whether a value is `None`, the special `is` operator is often used (and considered more elegant) instead of the regular `==` comparison.
-
-```python
-age_depp = None
-print('Is Johnny Depp ageless? {0}'.format(age_depp is None))
-```
-
-
-### `str`: text strings
+### str: text strings
 
 Text strings (`str`) are indicated by putting text between single (`'`) or double (`"`) quotes. You can specify strings spanning multiple lines with triplets of single (`'''`) or double (`"""`) quotes:
 
@@ -138,7 +141,17 @@ For a complete list of `str` functions, see:
 - <https://docs.python.org/3/library/stdtypes.html#string-methods>
 
 
-### `int` and `float`: numbers
+### None: a special kind of nothing
+
+`None` is a special kind of value that is a type of its own (`NoneType`). Its main function is to indicate that a value is missing. To check whether a value is `None`, the special `is` operator is often used (and considered more elegant) instead of the regular `==` comparison.
+
+```python
+age_depp = None
+print('Is Johnny Depp ageless? {0}'.format(age_depp is None))
+```
+
+
+### int and float: numbers
 
 The two main numeric types are:
 
@@ -151,22 +164,17 @@ Python automatically determines whether a value is an `int` or a `float`.
 my_int = 7
 my_first_float = 3.14
 my_second_float = 7. # The decimal point indicates that this should be a float
-
-# Print out some information about the numbers
-print('my_int is {0} and has type {1}'.format(my_int, type(my_int)))
-print('my_first_float is {0} and has type {1}'.format(my_first_float, type(my_first_float)))
-print('my_second_float is {0} and has type {1}'.format(my_second_float, type(my_second_float)))
 ```
 
 You can perform [all standard mathematical operations](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex), such as `+` and `*`. You can determine the order in which operations should be evaluated with parentheses.
 
 ```python
-first_multiply_then_add = 2 * 3 + 4
-first_add_then_multiply = 2 * (3 + 4)
+mul_add = 2 * 3 + 4
+add_mul = 2 * (3 + 4)
 
 # Print out some information about the numbers
-print('first_multiply_then_add is {0}'.format(first_multiply_then_add))
-print('first_add_then_multiply is {0}'.format(first_add_then_multiply))
+print('First multiply then add: {0}'.format(mul_add))
+print('First add then multiply: {0}'.format(add_mul))
 ```
 
 The `float` type has two special values:
@@ -175,14 +183,46 @@ The `float` type has two special values:
 -  `inf` is used to express infinite numbers. You will rarely encounter `inf`, unless you're doing specific kinds of mathematical computations.
 
 
-## Conditional (`if`) statements
+## Converting to float, int, or str
+
+To convert a variable to a `float`, `int`, or `str`, you can use the corresponding `float()`, `int()`, and `str()` functions. A common use case is when you use `input()` to get a number from the user: `input()` returns a `str`, and you need to use `int()` or `float()` to convert the input to a number.
+
+~~~python
+age = input('How old are you? ')
+age = int(age)
+print('You are {0} years old'.format(age))
+~~~
+
+__Output:__
+
+~~~
+How old are you? 35
+You are 35 years old
+~~~
+
+Converting values to another type is dangerous! If you try to convert the value 'this is not a number' to an `int`, you will get an error message, a so-called `Exception`. We discuss how to deal with `Exception`s [later](%url:exceptions%)
+
+```python
+age = int('this is not a number')
+```
+
+If you're unsure what type a variable has, you can check with `type()`:
+
+```python
+int_like_str = '10'
+print('int_like_str is a {0}'.format(type(int_like_str)))
+```
+
+
+## If statements
 
 An `if` statement is the most basic form of flow control. It allows you to check whether some condition is `True`, and if so do something. If the condition is `False`, either nothing is done (if there is no `else` block), or something `else` is done:
 
 ```python
+# Without else
 if 2 * 2 == 4:
     print('Two times to equals four')
-
+# With else
 if 1 * 1 == 2:
     print('This is not printed')
 else:
@@ -201,12 +241,12 @@ by a colon (`:`). This indicates that a block of code will follow that is indent
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pythagorean.svg/390px-Pythagorean.svg.png)
 
-Imagine the above right triangle and:
+Imagine a right triangle like the one above and:
 
-- Assign the number `2` to the variable `a`
-- Assign the number `4` to the variable `b`
-- Use Pythagoras theorem to assign the correct value to `c`
-- Use string formatting to print out: *The long side (c) has length 4.47213595499958*
+- Read a number from the standard input and assign it to `a`
+- Read another number from the standard input and assign it to `b`
+- Use Pythagoras theorem to determine the value of the long side `c`
+- Use string formatting to print out the length of the long side
 - If `c` is larger than `PI` (a constant), also print out: *And this is longer than PI*
 
 </div>
