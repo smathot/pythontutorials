@@ -7,13 +7,13 @@
           - /syntax
         - - 'Iterables: list, dict, and tuple'
           - /iterables
-        - - Loops
+        - - 'Loops: for and while'
           - /loops
         - - Functions
           - /functions
         - - Modules
           - /modules
-        - - Exceptions
+        - - 'Exceptions: error handling'
           - /exceptions
   - - Forum
     - http://forum.cogsci.nl/categories/misc

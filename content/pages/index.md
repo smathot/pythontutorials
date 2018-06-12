@@ -16,7 +16,7 @@ Once you're all set up, dive right in with one of the basic tutorials:
 
 1. [Syntax](%url:syntax%)
 2. [Iterables: list, dict, tuple, and set](%url:iterables%)
-3. [Loops](%url:loops%)
+3. [Loops: for and while](%url:loops%)
 4. [Functions](%url:functions%)
 5. [Modules](%url:modules%)
-6. [Exceptions](%url:exceptions%)
+6. [Exceptions: error handling](%url:exceptions%)

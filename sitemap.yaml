@@ -2,9 +2,9 @@ Get started: get-started
 Basics:
   Syntax: syntax
   "Iterables: list, dict, and tuple": iterables
-  Loops: loops
+  "Loops: for and while": loops
   Functions: functions
   Modules: modules
-  Exceptions: exceptions
+  "Exceptions: error handling": exceptions
 Forum: http://forum.cogsci.nl/categories/misc
 Blog: http://www.cogsci.nl/
