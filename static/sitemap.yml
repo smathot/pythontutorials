@@ -4,18 +4,18 @@
   - - Basics
     - !!python/object/apply:collections.OrderedDict
       - - - Syntax
-          - /syntax
+          - /basic/syntax
         - - 'Iterables: list, dict, and tuple'
-          - /iterables
+          - /basic/iterables
         - - 'Loops: for and while'
-          - /loops
+          - /basic/loops
         - - Functions
-          - /functions
+          - /basic/functions
         - - Modules
-          - /modules
+          - /basic/modules
         - - 'Exceptions: error handling'
-          - /exceptions
+          - /basic/exceptions
   - - Forum
-    - http://forum.cogsci.nl/categories/misc
+    - http://forum.cogsci.nl/categories/miscellaneous
   - - Blog
     - http://www.cogsci.nl/

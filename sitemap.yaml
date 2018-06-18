@@ -1,10 +1,10 @@
 Get started: get-started
 Basics:
-  Syntax: syntax
-  "Iterables: list, dict, and tuple": iterables
-  "Loops: for and while": loops
-  Functions: functions
-  Modules: modules
-  "Exceptions: error handling": exceptions
-Forum: http://forum.cogsci.nl/categories/misc
+  Syntax: basic/syntax
+  "Iterables: list, dict, and tuple": basic/iterables
+  "Loops: for and while": basic/loops
+  Functions: basic/functions
+  Modules: basic/modules
+  "Exceptions: error handling": basic/exceptions
+Forum: http://forum.cogsci.nl/categories/miscellaneous
 Blog: http://www.cogsci.nl/
