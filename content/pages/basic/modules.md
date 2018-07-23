@@ -65,7 +65,9 @@ print(rnd.choice(prime_numbers))
 
 ### Some simple statistics
 
-Use the `statistics` module to calculate the mean of all prime numbers below 10.
+%-- include: exercises/basic/modules-1.md --%
+
+[View solution](%url:modules%-solution-1)
 
 </div>
 
@@ -73,6 +75,8 @@ Use the `statistics` module to calculate the mean of all prime numbers below 10.
 
 ### Files and folders
 
-Use the `os` and `os.path` modules to list the contents of your Downloads folder, and indicate for each item whether it's a file or a folder.
+%-- include: exercises/basic/modules-2.md --%
+
+[View solution](%url:modules%-solution-2)
 
 </div>

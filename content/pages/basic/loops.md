@@ -134,16 +134,9 @@ for artist, sold in zip(artists, sales):
 
 ### Fibonacci
 
-Calculate the [Fibonacci series](https://en.wikipedia.org/wiki/Fibonacci_number) up to 1,000. Print out each Fibonacci number including its position in the series. Like so:
+%-- include: exercises/basic/loops-1.md --%
 
-~~~
-0: 1
-1: 1
-2: 2
-3: 3
-4: 5
-etc.
-~~~
+[View solution](%url:loops%-solution-1)
 
 </div>
 
@@ -151,11 +144,8 @@ etc.
 
 ### Best-selling artists
 
-Do the following until the user enters `quit`:
+%-- include: exercises/basic/loops-2.md --%
 
-- Ask the name of an artist
-- Look up the number of sales of this artist in a `dict`
-- Print out the result if the number of sales are known
-- If the number of sales are unknown, ask the user to enter the number of sales, and update the `dict` accordingly
+[View solution](%url:loops%-solution-2)
 
 </div>

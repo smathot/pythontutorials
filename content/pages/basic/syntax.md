@@ -133,7 +133,7 @@ print('My name is {0}'.format(name))
 In addition to `str.format()`, `str` objects support many more functions. For example, the `str.startswith()` function checks whether the first part of a `str` is equal to another `str`.
 
 ```python
-print(my_first_str.startswith('some'))
+print(another_str.startswith('some'))
 ```
 
 For a complete list of `str` functions, see:
@@ -239,15 +239,9 @@ by a colon (`:`). This indicates that a block of code will follow that is indent
 
 ### Pythagoras
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Pythagorean.svg/390px-Pythagorean.svg.png)
+%-- include: exercises/basic/syntax.md --%
 
-Imagine a right triangle like the one above and:
-
-- Read a number from the standard input and assign it to `a`
-- Read another number from the standard input and assign it to `b`
-- Use Pythagoras theorem to determine the value of the long side `c`
-- Use string formatting to print out the length of the long side
-- If `c` is larger than `PI` (a constant), also print out: *And this is longer than PI*
+[View solution](%url:syntax%-solution)
 
 </div>
 
