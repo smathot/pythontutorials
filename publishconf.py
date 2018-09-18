@@ -3,4 +3,4 @@
 from __future__ import unicode_literals
 from baseconf import *
 
-SITEURL = 'http://python.cogsci.nl'
+SITEURL = 'https://python.cogsci.nl'
