@@ -20,3 +20,7 @@ Once you're all set up, dive right in with one of the basic tutorials:
 4. [Functions](%url:functions%)
 5. [Modules](%url:modules%)
 6. [Exceptions: error handling](%url:exceptions%)
+
+Or do you prefer to sit back, watch, and learn?
+
+- Check out the [Python playlist](https://www.youtube.com/playlist?list=PLR-r0edywujd8D-R2Kue1C_wYEK_4Ii71) on YouTube.
