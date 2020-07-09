@@ -15,6 +15,14 @@
           - /basic/modules
         - - 'Exceptions: error handling'
           - /basic/exceptions
+  - - Numerical computing
+    - !!python/object/apply:collections.OrderedDict
+      - - - NumPy
+          - /numerical/numpy
+        - - DataMatrix
+          - /numerical/datamatrix
+        - - Plotting
+          - /numerical/plotting
   - - Forum
     - http://forum.cogsci.nl/categories/miscellaneous
   - - Blog

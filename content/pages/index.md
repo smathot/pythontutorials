@@ -12,7 +12,7 @@ If you do not have a Python environment set up yet (or don't even know what this
 
 - [Get started](%url:get-started%)
 
-Once you're all set up, dive right in with one of the basic tutorials:
+Once you're all set up, dive right in with one of the __basic tutorials__:
 
 1. [Syntax](%url:syntax%)
 2. [Iterables: list, dict, tuple, and set](%url:iterables%)
@@ -20,6 +20,12 @@ Once you're all set up, dive right in with one of the basic tutorials:
 4. [Functions](%url:functions%)
 5. [Modules](%url:modules%)
 6. [Exceptions: error handling](%url:exceptions%)
+
+Or do you want to learn about __numerical computing__ with Python?
+
+7. [NumPy](%url:numpy%)
+8. [DataMatrix](%url:datamatrix%)
+9. [Plotting with Seaborn and Matplotlib](%url:plotting%)
 
 Or do you prefer to sit back, watch, and learn?
 

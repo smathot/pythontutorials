@@ -6,5 +6,9 @@ Basics:
   Functions: basic/functions
   Modules: basic/modules
   "Exceptions: error handling": basic/exceptions
+Numerical computing:
+  NumPy: numerical/numpy
+  DataMatrix: numerical/datamatrix
+  Plotting: numerical/plotting
 Forum: http://forum.cogsci.nl/categories/miscellaneous
 Blog: http://www.cogsci.nl/

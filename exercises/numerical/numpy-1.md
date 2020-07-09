@@ -1,0 +1,4 @@
+- Generate an array of a thousand random numbers
+- Print out the shape of the array, and the mean and standard deviation of these numbers
+- Remove all numbers that are more than one standard deviation above or below the mean
+- Again, print out the shape of the array, and the mean and standard deviation of the remaining numbers
