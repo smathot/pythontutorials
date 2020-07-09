@@ -22,7 +22,7 @@ print(True)
 print(None)
 ```
 
-The *standard output* is the default output channel of your program. If you're using Python from a terminal, then whatever goes to the standard output appears in the terminal; if you're using Python from within Spyder, then whatever goes to the standard output appears in Spyder's IPython console; if you're using Python from within a Jupyter Notebook, then whatever goes to the standard output appears in the notebook; etc.
+The *standard output* is the default output channel of your program. If you're using Python from a terminal, then whatever goes to the standard output appears in the terminal; if you're using Python from within Rapunzel or Spyder, then whatever goes to the standard output appears in the IPython console; if you're using Python from within a Jupyter Notebook, then whatever goes to the standard output appears in the notebook; etc.
 
 But you generally don't have to worry about this: Your output will appear where you expect it to appear.
 
@@ -43,7 +43,7 @@ __Output:__
 Hello world!
 ~~~
 
-The *standard input* is the default input channel of your program. If you're using Python in an interactive environment, such as Spyder or a Jupyter Notebook, then the user is prompted to provide input whenever the program tries to read from the standard input.
+The *standard input* is the default input channel of your program. If you're using Python in an interactive environment, such Rapunzel, Spyder, or a Jupyter Notebook, then the user is prompted to provide input whenever the program tries to read from the standard input.
 
 Again, you generally don't have to worry about this: User input will be handled as you'd expect it to.
 
