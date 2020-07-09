@@ -1,0 +1,1 @@
+Download [this file](/data/movies.xlsx) and read it with DataMatrix. The file contains titles, years, and ratings for many movies. Select only movies that were released between 1990 and 2000. Then, for each year separately, print the mean rating for the movies released in that year.
