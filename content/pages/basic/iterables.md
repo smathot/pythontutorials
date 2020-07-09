@@ -169,7 +169,7 @@ fibonacci = (1, 1, 2, 3, 5, 8)
 ```
 
 
-## set: an unordered, immutable collection of unique elements
+## set: an unordered, mutable collection of unique elements
 
 The `set` is a somewhat unusual type, which you will rarely use unless you're doing mathematical computations. A `set` corresponds to a mathematical set as specified in [set theory](https://en.wikipedia.org/wiki/Set_theory).
 
