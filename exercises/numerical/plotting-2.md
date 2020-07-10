@@ -1,0 +1,1 @@
+Create a two-by-two plot, and in each subplot show the distribution of heart rate for one combination of gender and group of participants (Men Runners, Men Control, Female Runners, Female Control).
