@@ -1,4 +1,6 @@
 title: Plotting with Seaborn and Maplotlib
+next_title: Statistics
+next_url: %url:statistics%
 
 
 [TOC]

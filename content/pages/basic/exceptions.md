@@ -1,4 +1,6 @@
 title: Exceptions: error handling
+next_title: NumPy
+next_url: %url:numpy%
 
 
 [TOC]

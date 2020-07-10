@@ -23,9 +23,10 @@ Once you're all set up, dive right in with one of the __basic tutorials__:
 
 Or do you want to learn about __numerical computing__ with Python?
 
-7. [NumPy](%url:numpy%)
-8. [DataMatrix](%url:datamatrix%)
-9. [Plotting with Seaborn and Matplotlib](%url:plotting%)
+1. [NumPy](%url:numpy%)
+2. [DataMatrix](%url:datamatrix%)
+3. [Plotting with Seaborn and Matplotlib](%url:plotting%)
+4. [Statistics with SciPy and Statsmodels](%url:statistics%)
 
 Or do you prefer to sit back, watch, and learn?
 
