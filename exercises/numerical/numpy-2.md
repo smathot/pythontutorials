@@ -1,0 +1,4 @@
+- Read [this dataset](/data/fmri-data.npy), which has been adapted from the [StudyForrest](http://studyforrest.org/) project. It is an `.npy` file, which you can read with `np.load()`.
+- This will give you a 4D array with the following dimensions: left-to-right, back-to-front, bottom-to-top, time. Values in the array correspond to BOLD values (an indirect measure of brain activity).
+- First, inspect the shape of the array to see how big each dimension is.
+- Next, print out the average BOLD value separately for the left and the right side of the brain!

@@ -169,6 +169,19 @@ print('mean = {}\nmedian = {}\nstd = {}'.format(
 ))
 ```
 
+If you have a multidimensional array, then you can specify the axis across which the mean should be calculated. You can even specify multiple axes; this sounds a bit abstract, but you can think of it as specifying which dimensions should be averaged out. Therefore, specifying all axes is the same as taking the mean across the entire array.
+
+```python
+a = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+print(a)
+print('mean(across first axis) = {}'.format(a.mean(axis=0)))
+print('mean(across second axis) = {}'.format(a.mean(axis=1)))
+print('mean(across all axes) = {}'.format(a.mean(axis=(0, 1))))
+```
+
 If an array contains `nan` values (see [syntax](%url:syntax%)), then each of the above functions will also return `nan`. This is because of the mathematical convention that every operation that involves a `nan` evaluates to `nan`. However, this behavior is often not what you want, and therefore NumPy contains functions that explicitly ignore `nan` values:
 
 ```
@@ -197,5 +210,15 @@ print('nanmean = {}\nnanmedian = {}\nnanstd = {}'.format(
 %-- include: exercises/numerical/numpy-1.md --%
 
 [View solution](%url:numpy%-solution-1)
+
+</div>
+
+<div class='info-box' markdown=1>
+
+### Activity in the left vs right brain
+
+%-- include: exercises/numerical/numpy-2.md --%
+
+[View solution](%url:numpy%-solution-2)
 
 </div>
