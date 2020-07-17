@@ -230,3 +230,13 @@ print(pm)
 [View solution](%url:statistics%-solution-1)
 
 </div>
+
+<div class='info-box' markdown=1>
+
+### Correlating activity in the left and right brain
+
+%-- include: exercises/numerical/statistics-2.md --%
+
+[View solution](%url:statistics%-solution-2)
+
+</div>

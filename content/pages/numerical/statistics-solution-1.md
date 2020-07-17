@@ -3,6 +3,16 @@ next_title: Statistics
 next_url: %url:statistics%
 
 
+## A three-way Repeated Measures ANOVA
+
+
+### Exercise
+
+%-- include: exercises/numerical/statistics-1.md --%
+
+
+### Solution
+
 ```python
 from pandas import pivot_table
 from datamatrix import io
