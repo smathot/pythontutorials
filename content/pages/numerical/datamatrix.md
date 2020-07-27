@@ -217,3 +217,13 @@ print('Mean heart rate for controls is {} bpm'.format(dm_control['Heart Rate'].m
 [View solution](%url:datamatrix%-solution-1)
 
 </div>
+
+<div class='info-box' markdown=1>
+
+### Removing poorly performing participants
+
+%-- include: exercises/numerical/datamatrix-2.md --%
+
+[View solution](%url:datamatrix%-solution-2)
+
+</div>
