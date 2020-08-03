@@ -180,7 +180,7 @@ print(dm_subset)
 
 ### Splitting
 
-You can also split a DataMatrix into subsets, using the `split()` function from `datamatrix.operations` (usually imported as `ops`). To do this, specify a column with discrete values that indicate the groups into which you want to split. For example, consider the dataset from Moore, McCabe, & Craig (included as example data with [JASP](https://jasp-stats.org/)). This contains heart rate values for runners and non-runners (controls).
+You can also split a DataMatrix into subsets, using the `split()` function from `datamatrix.operations` (usually imported as `ops`). To do this, specify a column with discrete values that indicate the groups into which you want to split. For example, consider [this dataset](/data/heartrate.csv) from Moore, McCabe, & Craig (included as example data with JASP). This contains heart rate values for runners and non-runners (controls).
 
 The first way to use `ops.split()` is by only specifying a column to split the data based on. In this case, the function returns a sequence of `value, subdatamatrix` tuples that you can iterate through with a `for` loop: (Note the alternative way to refer to columns that contain spaces or non-ascii characters: `dm['Heart Rate']`.)
 

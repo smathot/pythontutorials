@@ -14,7 +14,7 @@ All datasets used below are taken from the example data included with [JASP](htt
 
 ### Independent-samples t-test
 
-Consider a dataset from Matzke et al. (2015). In this dataset, participants performed a memory task in which they recalled a list of words. During the retention interval, one group of participants looked at a central fixation dot on a display. Another group of participants continuously made horizontal eye movements, which is believed by some to improve memory.
+Consider [this dataset](/data/matzke_et_al.csv) from Matzke et al. (2015). In this dataset, participants performed a memory task in which they recalled a list of words. During the retention interval, one group of participants looked at a central fixation dot on a display. Another group of participants continuously made horizontal eye movements, which is believed by some to improve memory.
 
 You can use the `ttest_ind()` function from `scipy.stats` to test whether memory performance (`CriticalRecall`) was higher for the horizontal-eye-movement group as compared to the fixation group. (There is a significant difference, but it goes in the opposite direction, such that the fixation group performed best.)
 
@@ -44,7 +44,7 @@ plt.show()
 
 ### Paired-samples t-test
 
-Consider a dataset from Moore, McCabe, & Craig. Here, aggressive behavior from people suffering from dementia was measured during full moon and another phase of the lunar cycle. Each participant was measured at both phases, i.e. this was a within-subject design.
+Consider [this dataset](/data/moon-aggression.csv) from Moore, McCabe, & Craig. Here, aggressive behavior from people suffering from dementia was measured during full moon and another phase of the lunar cycle. Each participant was measured at both phases, i.e. this was a within-subject design.
 
 You can use the `ttest_rel()` function to test whether aggression differed between the full moon and the other lunar phase. (Interestingly, it did.)
 
@@ -72,7 +72,7 @@ plt.show()
 
 ### One-sample t-test
 
-If we take the difference between the Moon and Other measurements of the above dataset, then we can test this difference against zero (or another value specified with the `popmean` keyword) with `ttest_1samp()`:
+If we take the difference between the Moon and Other measurements of [the above dataset](/data/moon-aggression.csv), then we can test this difference against zero (or another value specified with the `popmean` keyword) with `ttest_1samp()`:
 
 ```python
 from datamatrix import io
@@ -88,7 +88,7 @@ print('t = {:.4f}, p = {:.4f}'.format(t, p))
 
 ### Correlation / simple linear regression
 
-The following dataset, taken from Rotten Tomatoes, contains the 'freshness' rating and the Box Office profit for all of Adam Sandler's movies. You can use `linregress()` from `scipy.stats` to test if highly rated Adam Sandler movies make more money than poorly rated ones. (They don't.)
+[This dataset](/data/adam-sandler.csv), taken from Rotten Tomatoes, contains the 'freshness' rating and the Box Office profit for all of Adam Sandler's movies. You can use `linregress()` from `scipy.stats` to test if highly rated Adam Sandler movies make more money than poorly rated ones. (They don't.)
 
 ```python
 from datamatrix import io
@@ -116,7 +116,7 @@ plt.show()
 
 ### Multiple linear regression
 
-Consider this dataset from Moore, McCabe, & Craig which contains grade-point averages (`gpa`) and SAT scores for mathematics (`satm`) and verbal knowledge (`satv`) for 500 high-school students. To test whether `satm` and `satv` are (uniquely) related to `gpa`, you can use the code below. (Only `satm` is uniquely related to `gpa`.)
+Consider [this dataset](/data/gpa.csv) from Moore, McCabe, & Craig which contains grade-point averages (`gpa`) and SAT scores for mathematics (`satm`) and verbal knowledge (`satv`) for 500 high-school students. To test whether `satm` and `satv` are (uniquely) related to `gpa`, you can use the code below. (Only `satm` is uniquely related to `gpa`.)
 
 The series of nested function calls (`ols(…).fit().summary()`) isn't very elegant, but the important part is the formula that is specified in a string with an R-style formula.
 
@@ -133,7 +133,7 @@ print(ols('gpa ~ satm + satv', data=dm).fit().summary())
 
 ### ANOVA (regular)
 
-Let's go back to the heart-rate data from Moore, McCabe, and Craig. This dataset contains two factors that vary between subjects (Gender and Group) and one dependent variable (Heart Rate). To test whether Gender, Group, or their interaction affect heart rate, you need the following code. (They all do.)
+Let's go back to [this heart-rate data](/data/heartrate.csv) from Moore, McCabe, and Craig. This dataset contains two factors that vary between subjects (Gender and Group) and one dependent variable (Heart Rate). To test whether Gender, Group, or their interaction affect heart rate, you need the following code. (They all do.)
 
 As above, the combination of `ols()` and `anova_lm()` isn't very elegant, but the important part is the formula.
 
@@ -161,7 +161,7 @@ plt.show()
 
 ### Repeated Measures ANOVA
 
-A Repeated Measures ANOVA is generally used to analyze data from experiments in which all participants take part in all conditions, that is, a within-subject design. An example of such a design comes from an experiment by [Zhou and colleagues](https://doi.org/10.3758/s13414-020-02048-5), in which participants searched for a target object in the presence of a distractor object. Either the target, or the distractor, or both could match a color that participants held in memory.
+A Repeated Measures ANOVA is generally used to analyze data from experiments in which all participants take part in all conditions, that is, a within-subject design. An example of such a design comes from an experiment by [Zhou and colleagues](https://doi.org/10.3758/s13414-020-02048-5), in which participants searched for a target object in the presence of a distractor object. Either the target, or the distractor, or both could match a color that participants held in memory. You can download [this dataset here](/data/zhou_et_al_2020_exp1.csv).
 
 To test whether the factors distractor-match, target-match, and their interaction affect search accuracy, you can use the `AnovaRM` class from `statsmodels.stats.anova`. (They all do.)
 

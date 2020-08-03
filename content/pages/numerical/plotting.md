@@ -31,7 +31,7 @@ plt.show()
 
 There are many functions to make your plot look better, for example by adding labels to the axes. You can find a list of all functions [here](https://matplotlib.org/3.2.2/api/_as_gen/matplotlib.pyplot.html).
 
-Let's consider a slightly more realistic example: a scatterplot of movie ratings over the years.
+Let's consider a slightly more realistic example: a scatterplot of movie ratings over the years, based on [this data](/data/movies.xlsx).
 
 
 ```python
@@ -70,7 +70,7 @@ plt.show()
 
 ### Bar plot
 
-Let's again consider the dataset from Moore, McCabe, & Craig (included as example data with [JASP](https://jasp-stats.org/)). This data contains the heart rate of male and female runners and control participants. So let's plot heart rate as a function of Gender (X axis) and Group (hue).
+Let's again consider [this dataset](/data/heartrate.csv) from Moore, McCabe, & Craig (included as example data with JASP). This data contains the heart rate of male and female runners and control participants. So let's plot heart rate as a function of Gender (X axis) and Group (hue).
 
 
 ```python
