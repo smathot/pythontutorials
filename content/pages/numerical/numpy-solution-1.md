@@ -20,7 +20,9 @@ m = np.mean(a)
 sd = np.std(a)
 print('Before removing extreme values:')
 print('N = {}, M = {}, SD = {}'.format(len(a), m, sd))
-a = a[(a > m - sd) & (a < m + sd)]
+new_a = a[(a > m - sd) & (a < m + sd)]
+new_m = np.mean(new_a)
+new_sd = np.std(new_a)
 print('After removing extreme values:')
-print('N = {}, M = {}, SD = {}'.format(len(a), m, sd))
+print('N = {}, M = {}, SD = {}'.format(len(new_a), new_m, new_sd))
 ```
