@@ -100,16 +100,14 @@ print('Box Office = {:.2f} * Freshness + {:.2f}'.format(slope, intercept))
 print('p = {:.4f}, r = {:.4f}'.format(p, r))
 ```
 
-To visualize this relationship, you can use Seaborn's `regplot()` function. Unfortunately, this function doesn't work with a DataMatrix object, and so we first need to convert this to a pandas DataFrame with the `to_pandas()` function from `datamatrix.convert`.
+To visualize this relationship, you can use Seaborn's `regplot()` function.
 
 
 ```python
-from datamatrix import convert as cnv
 from matplotlib import pyplot as plt
 import seaborn as sns
 
-df = cnv.to_pandas(dm)
-sns.regplot(x='Freshness', y='Box Office ($M)', data=df)
+sns.regplot(x='Freshness', y='Box Office ($M)', data=dm)
 plt.show()
 ```
 
@@ -170,13 +168,12 @@ Somewhat different most other RM-ANOVA software, the `AnovaRM` class accepts the
 
 ```python
 from pandas import pivot_table
-from datamatrix import io, convert as cnv
+from datamatrix import io
 from statsmodels.stats.anova import AnovaRM
 
 dm = io.readtxt('data/zhou_et_al_2020_exp1.csv')
-df = cnv.to_pandas(dm)
 aov = AnovaRM(
-    df,
+    dm,
     depvar='search_correct',
     subject='subject_nr',
     within=['target_match', 'distractor_match'],
@@ -206,11 +203,10 @@ Tip: If you prefer to conduct the RM-ANOVA with different software, such as JASP
 
 ```python
 from pandas import pivot_table
-from datamatrix import io, convert as cnv
+from datamatrix import io
 
-df = cnv.to_pandas(dm)
 pm = pivot_table(
-    df,
+    dm,
     values='search_correct',
     index='subject_nr',
     columns=['target_match', 'distractor_match']

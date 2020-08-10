@@ -16,16 +16,14 @@ next_url: %url:statistics%
 ```python
 from pandas import pivot_table
 from datamatrix import io
-from datamatrix import convert as cnv
 from datamatrix import operations as ops
 from statsmodels.stats.anova import AnovaRM
 import seaborn as sns
 
-# Read the data and convert it to a DataFrame for AnovaRM
+# Read the data and pass it to AnovaRM
 dm = io.readtxt('data/zhou_et_al_2020_exp1.csv')
-df = cnv.to_pandas(dm)
 aov = AnovaRM(
-    df,
+    dm,
     depvar='search_correct',
     subject='subject_nr',
     within=[
