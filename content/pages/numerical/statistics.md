@@ -186,7 +186,9 @@ Let's visualize this result.
 
 We could (but shouldn't!) simply create a `pointplot` based on `dm`. But this plot would not take into account that a Repeated Measures ANOVA is based on aggregated data (i.e. one observation per condition and participant). And therefore the error bars of this plot would not reflect the variation between participants (as it should), but rather the variation between individidual trials. 
 
-To make a more appropriate figure, we first use `ops.group()` to create a new datamatrix, `gm`, in each row corresponds to a single condition for a single participant. Initially, `gm.search_correct` would correspond to a series of values, one for each trial. (It is a `SeriesColumn`, a powerful type of column about which you can read more [here](https://datamatrix.cogsci.nl/series-tutorial/).) We use `srs.reduce()` to change this series of values to a single, mean value. And then we can plot!
+To make a more appropriate figure, we first use `ops.group()` to create a new datamatrix, `gm`, in each row corresponds to a single condition for a single participant. Initially, `gm.search_correct` then corresponds to a series of values, one for each trial. (It is a `SeriesColumn`, a powerful type of column about which you can read more [here](https://datamatrix.cogsci.nl/series-tutorial/).) We use `srs.reduce_()` to change this series of values to a single, mean value. Finally, we remove the between-subject variability, which is a fancy way of saying that we change `search_correct` such that it is on average the same for each participant, without changing the overall average of `search_correct` across participants. (This procedure is described in more detail in [this blogpost](https://www.cogsci.nl/blog/tutorials/156-an-easy-way-to-create-graphs-with-within-subject-error-bars).)
+
+And then we can finally create a plot that is an appropriate match to the Repeated Measures ANOVA!
 
 
 ```python
@@ -194,12 +196,15 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 from datamatrix import operations as ops, series as srs
 
-# Group the data by conditions and subject. 
+# Group the data by condition and subject
 gm = ops.group(
     dm,
     by=[dm.target_match, dm.distractor_match, dm.subject_nr]
 )
-gm.search_correct = srs.reduce(gm.search_correct)
+gm.search_correct = srs.reduce_(gm.search_correct)
+# Remove between-subject variability
+for subject_nr, sm in ops.split(gm.subject_nr):
+    gm.search_correct[sm] = sm.search_correct - sm.search_correct.mean + gm.search_correct.mean
 # And plot!
 sns.pointplot(
     x='target_match',
