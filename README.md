@@ -1,12 +1,12 @@
 # Learning Python
 
-Copyright 2018
+Copyright 2018-2021
 
 Sebastiaan Mathôt <s.mathot@cogsci.nl>
 
 ## About
 
-This repository contains the source for <http://python.cogsci.nl/>.
+This repository contains the source for <http://python.cogsci.nl/>, a website with open-source Python tutorials.
 
 ## License information
 
