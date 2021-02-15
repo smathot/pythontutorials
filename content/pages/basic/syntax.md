@@ -38,7 +38,7 @@ print(user_input)
 
 __Output:__
 
-~~~
+~~~ .python
 >>> Hello world!
 Hello world!
 ~~~

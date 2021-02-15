@@ -182,16 +182,30 @@ aov = AnovaRM(
 print(aov)
 ```
 
-Let's visualize this result:
+Let's visualize this result.
+
+We could (but shouldn't!) simply create a `pointplot` based on `dm`. But this plot would not take into account that a Repeated Measures ANOVA is based on aggregated data (i.e. one observation per condition and participant). And therefore the error bars of this plot would not reflect the variation between participants (as it should), but rather the variation between individidual trials. 
+
+To make a more appropriate figure, we first use `ops.group()` to create a new datamatrix, `gm`, in each row corresponds to a single condition for a single participant. Initially, `gm.search_correct` would correspond to a series of values, one for each trial. (It is a `SeriesColumn`, a powerful type of column about which you can read more [here](https://datamatrix.cogsci.nl/series-tutorial/).) We use `srs.reduce()` to change this series of values to a single, mean value. And then we can plot!
+
 
 ```python
+from matplotlib import pyplot as plt
 import seaborn as sns
+from datamatrix import operations as ops, series as srs
 
+# Group the data by conditions and subject. 
+gm = ops.group(
+    dm,
+    by=[dm.target_match, dm.distractor_match, dm.subject_nr]
+)
+gm.search_correct = srs.reduce(gm.search_correct)
+# And plot!
 sns.pointplot(
     x='target_match',
     y='search_correct',
     hue='distractor_match',
-    data=dm
+    data=gm
 )
 plt.xlabel('Target match')
 plt.ylabel('Search accuracy (proportion)')
