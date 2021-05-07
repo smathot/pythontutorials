@@ -20,7 +20,7 @@ You can use the `ttest_ind()` function from `scipy.stats` to test whether memory
 
 
 ```python
-from datamatrix import io
+from datamatrix import io, operations as ops
 from scipy.stats import ttest_ind
 
 dm = io.readtxt('data/matzke_et_al.csv')
