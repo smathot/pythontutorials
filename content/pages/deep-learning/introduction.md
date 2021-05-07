@@ -13,7 +13,7 @@ In this set of tutorials, you will learn to work with artificial neural networks
 
 ### Artificial neural networks
 
-Brains are biological neural networks. A brain consists of about 100 billion brain cells, or *neurons*, which are connected to each other through about 100 trillion *synapses*. When a neuron gets active, it sends a signal to other neurons to which it is connected. In response, some of these other neurons become active themselves and send signals to yet other neurons. And so on, in a cascade of neural activity that, in a way that neuroscientists are only just beginning to understand, gives rise to feelings and thoughts. In other words, our minds correspond to the activity in the biological neural networks that are our brains.
+Brains are biological neural networks. A brain consists of about 100 billion brain cells, or *neurons*, which are connected to each other through about 100 trillion *synapses*. When a neuron becomes active, it sends a signal to all other neurons to which it is connected. In response, some of these other neurons become active themselves and send signals to yet other neurons. And so on, in a cascade of neural activity that, in a way that neuroscientists are only just beginning to understand (but still don't, really), gives rise to feelings and thoughts.
 
 An *artificial neural network* is a computer program that is inspired by biological neural networks. Artifical neural networks also consist of neurons (sometimes called *nodes* in this context) that are connected to each other. But artificial neurons and connections are software rather than cells.
 
@@ -31,12 +31,14 @@ figure:
 
 A neural network consists of layers of neurons. A network is considered 'deep' when it consists of many layers. The term *deep learning* simply refers to the training of such deep networks.
 
-In the next tutorial we will implement a shallow network, consisting of only three layers (as shown above in %FigPerceptron). In subsequent tutorials we will work with a pretrained network (MobileNet v2) that consists of 157 layers. That's where we'll really get into deep learning!
+In [the next tutorial](%link:basics%) we will implement a shallow network, consisting of only three layers (as shown above in %FigPerceptron). In subsequent tutorials we will work with a pretrained network (MobileNet v2) that consists of 157 layers. That's a real deep neural network!
 
 
 ### Convolutional neural networks
 
-A convolutional layer is a particular kind of layer in which each neuron is only connected to a subset of neurons in the layer above. Convolutional layers are a way to mimic the concept of so-called [receptive fields](https://en.wikipedia.org/wiki/Receptive_field) in biological neurons. Convolutional layers also reduce the number of connections, and thus the complexity, of neural networks as compared to densely connected layers, in which each neuron is connected to all neurons in the layer above.
+There are many different kinds of layers that can be used in a neural network: dense layers, maxpooling layers, etc.
+
+A convolutional layer is a particular kind of layer in which each neuron is only connected to a subset of neurons in the layer above. Convolutional layers are a way to mimic the concept of so-called [receptive fields](https://en.wikipedia.org/wiki/Receptive_field) in biological neurons. Convolutional layers also reduce the number of connections (and thus the complexity) of neural networks as compared to densely connected layers, in which each neuron is connected to all neurons in the layer above.
 
 
 %--
@@ -53,7 +55,7 @@ A convolutional neural network (CNN) is simply a network that contains at least 
 
 ### How comparable in size are deep neural networks to the human brain?
 
-Currently, even the most complex neural networks are many orders of magnitude smaller than human brains. For example, VGG19, the biggest network that is available as a pre-trained net in Keras, the Python library that we will use for these tutorials, consists of about 140 million parameters, where this number corresponds to the sum of the number of neurons and the number of connections in the network. If we make the simplifying (and almost certainly incorrect) assumption that synapses and neurons in biological brains can similarly thought of as single parameters, then VGG19 is a million times smaller than the human brain.
+Currently, even the most complex neural networks are many orders of magnitude smaller than human brains. For example, VGG19, the biggest network that is available as a pre-trained net in Keras (the Python library that we will use for these tutorials) consists of about 140 million parameters, where this number corresponds to the sum of the number of neurons and the number of connections in the network. If we make the simplifying (and almost certainly incorrect) assumption that synapses and neurons in biological brains can similarly thought of as single parameters, then VGG19 is still a million times smaller than the human brain.
 
 VGG19 does come close in size to an insect brain though. But despite this rough correspondence in brain size, it makes little sense to compare the cognitive abilities of large neural networks to those of, say, bees. In some ways, modern artificial neural networks are more intelligent than bees, for example when it comes to recognizing objects; but no artificial neural network to date comes close to a bee's ability to flexibly adapt to its environment. 
 

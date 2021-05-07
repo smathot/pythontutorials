@@ -1,4 +1,4 @@
-title: Customizing MobileNet v2 through transfer learning
+title: Customizing MobileNetV2 through transfer learning
 
 [TOC]
 
@@ -7,7 +7,7 @@ title: Customizing MobileNet v2 through transfer learning
 
 In [the previous tutorial](%link:image-classification%), you learned how to use MobileNetV2, a pretrained network for image classification. This is fun, but there are not many situations in which you want to perform the exact same task that MobileNetV2 has been trained on.
 
-In this tutorial, you will learn how to modify and retrain MobileNetV2 to dinstinguish male and female cats. This is an example of *transfer learning*: using the fact that having already learned one task (image classification using a 1000 categories) makes it easier to learn another task (distinguishing male and female cats).
+Therefore, in this tutorial, you will learn how to modify and retrain MobileNetV2 to perform another task than the one it was trained on: distinguishing male and female cats. This is an example of *transfer learning*: using the fact that having already learned one task (image classification using a 1000 categories) makes it easier to learn another task (distinguishing male and female cats).
 
 
 ## Importing MobileNetV2
@@ -23,7 +23,7 @@ model = MobileNetV2(weights='imagenet')
 
 ## Loading images and creating labels
 
-Our training data consists of 40 images: twenty pictures of male cats and twenty pictures of female cats. These pictures are taken from [this online experiment](http://www.chrislongmore.co.uk/experiments/catfaces/) by Chris Longmore. You can download the images [here]([/data/cats.zip)).
+Our training data consists of 40 images: twenty pictures of male cats and twenty pictures of female cats. These pictures are taken from [this online experiment](http://www.chrislongmore.co.uk/experiments/catfaces/) by Chris Longmore. You can download the images [here](/data/cats.zip).
 
 We first create an empty array of shape `(40, 224, 224, 3)`. This corresponds to 40 images of 224 × 224 pixels with three color channels.
 
@@ -59,16 +59,18 @@ from keras.applications.mobilenet import preprocess_input
 for i in range(0, 20):
     im = imread('data/cats/f{:02d}.jpg'.format(i + 1))
     im = preprocess_input(im)
-    data[i] = resize(im, output_shape=(224, 224))
+    im = resize(im, output_shape=(224, 224))
+    data[i] = im
 ```
 
-We then read in the male cats, and put them in the last 20 spots of the `data` array:
+Next we read in the male cats, and put them in the last 20 places of the `data` array:
 
 ```python
 for i in range(0, 20):
     im = imread('data/cats/m{:02d}.jpg'.format(i + 1))
     im = preprocess_input(im)
-    data[i + 20] = resize(im, output_shape=(224, 224))
+    im = resize(im, output_shape=(224, 224))
+    data[i + 20] = im
 ```
 
 The training labels correspond to an array of length 40, where the first 20 values are 0 and the last 20 values are 1. In other words, we code the female cats as category 0 and the male cats as category 1.
@@ -82,7 +84,7 @@ labels[20:] = 1
 
 ## Checking if our cats are recognized as cats
 
-Although MobileNetV2 has not (yet) been trained to distinguish male and female cats, it *has* been trained to recognize cats in general. Therefore, as a sanity check, let's see whether MobileNetV2 indeed categorizes all of our 40 input images as cats. (See [this previous tutorial](%link:image-classification%) if you're unsure how this works.)
+Although MobileNetV2 has not (yet) been trained to distinguish male and female cats, it *has* been trained to recognize cats in general. Therefore, as a sanity check, let's see whether MobileNetV2 indeed categorizes all of our 40 input images as cats. We only get the top prediction for each image. (See [this previous tutorial](%link:image-classification%) if you're unsure how this works.)
 
 ```python
 from keras.applications.mobilenet import decode_predictions
@@ -98,7 +100,7 @@ Great! MobileNetV2 has recognized every image as being a cat, and has even ident
 
 ## Modifying the model
 
-MobileNetV2 has an output layer that consists of 1000 neurons, which correspond to the 1000 categories that it has been trained on. But here we only want to classify two categories: male and female cats. Therefore, we need an output layer that consists of only two neurons.
+MobileNetV2 has an output layer that consists of 1000 neurons, which correspond to the 1000 categories that it has been trained on. But here we want to only classify two categories: male and female cats. Therefore, we need an output layer that consists of only two neurons.
 
 We first create a densely connected layer that we will use as our output layer:
 
@@ -116,9 +118,9 @@ To do this, we first get the output of second-to-last layer (`model.layers[-2].o
 cat_output = cat_output(model.layers[-2].output)
 ```
 
-(Side note: Here we are using Keras's so-called [functional programming style](https://keras.io/guides/functional_api/). This is less user-friendly than the [sequential programming style](https://keras.io/guides/sequential_model/) that we used in previous tutorials, but has the advantage of being more flexible; for example, the functional programming style allows you to construct complex, non-linear network architectures. And importantly: if you want to work with a model, such as MobileNetV2, that has been built using the functional programming style, then you have no choice but to use this style as well.)
+(Side note: Here we are using Keras's so-called [functional programming style](https://keras.io/guides/functional_api/). This is less user-friendly than the [sequential programming style](https://keras.io/guides/sequential_model/) that we used in previous tutorials, but it has the advantage of being more flexible; for example, the functional programming style allows you to construct complex, non-linear network architectures. And importantly: if you want to work with a model, such as MobileNetV2, that has been built using the functional programming style, then you have no choice but to use this style as well.)
 
-Next we create a new model, using the `Model` class (from the functional programming style). `Model()` requires two arguments: `inputs`, for which we simply use the input object from the original model; and `outputs`, which is our newly created output object. (Both of these objects are `KerasTensor`s.)
+Next we create a new model, using the `Model` class. `Model()` requires two arguments: `inputs`, for which we simply use the input object from the original model; and `outputs`, which is our newly created output object. (Technically, both of these objects are `KerasTensor`s.)
 
 ```python
 from keras import Model
@@ -129,7 +131,7 @@ cat_model = Model(inputs=cat_input, outputs=cat_output)
 
 Our `cat_model` contains 156 layers with about 2.2 million parameters. It takes a lot of time and data to train a model of this size. Fortunately, the model has already been trained for the most part, because we have simply copied all layers except for the output layer from MobileNetV2. Therefore, and to the extent that the original training is useful for our new purpose, we don't need to train these layers again, and we can *freeze* them.
 
-To freeze a layer, simply set its `trainable` property to `False`.
+To freeze a layer, simply set its `trainable` property to `False`. We do this for all layers except the last one, which is our newly created output layer.
 
 ```python
 for layer in cat_model.layers[:-1]:
@@ -149,13 +151,13 @@ cat_model.compile(
 
 ## Training the modified model
 
-Let's train our cat model to distinguish male and female cats. (See [this previous tutorial](%link:basics%) if you're unsure how this works.)
+Ok, let's now train our cat model to distinguish male and female cats. (See [this previous tutorial](%link:basics%) if you're unsure how this works.)
 
 ```python
 cat_model.fit(x=data, y=labels, epochs=20, verbose=2)
 ```
 
-The accuracy converges on 1, which suggests that the model is indeed able to distinguish male and female cats. This is surprising given that (to me) they look so similar.
+Wow! The accuracy converges on 1, which suggests that the model is indeed able to distinguish male and female cats. This is surprising given that (to me) they look very similar.
 
 We can verify the accuracy by generating predictions for the training data, using `np.argmax()` to decode the predictions into female (0) or male (1). (See [this previous tutorial](%link:basics%) if you're unsure how this works.)
 
@@ -228,6 +230,4 @@ cat_model2.fit(
 
 As before, the (regular) accuracy goes up to 1. But crucially, the validation accuracy does not! This means that our model never really learned to distinguish male and female cats; it merely learned to recognize all of the exemplars that we trained it on, without being able to generalize this knowledge to new cats. This is called *overfitting* and often happens when a network is trained with a small dataset and/ or on a difficult task. (Both of which are true here.)
 
-It's just really hard to tell apart male and female cats. That's also what Chris Longmore concluded.
-
-But at least you've now learned the most important concepts behind deep learning, and how to work with Keras!
+It's just really hard to tell apart male cat from female cats. That's also what Chris Longmore concluded.
