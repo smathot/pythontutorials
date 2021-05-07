@@ -13,6 +13,7 @@ A `SyntaxError` occurs when you try to run syntactically invalid Python code, th
 
 
 ```python
+# should-raise
 if x = 0: # = should be ==
   print('x is 0')
 ```
@@ -29,6 +30,7 @@ def oneover(i):
 Calling `oneover(0)` results in a `ZeroDivisionError` (a special kind of `Exception`) because dividing any number by `0` is not allowed:
 
 ```python
+# should-raise
 oneover(0)
 ```
 
@@ -66,6 +68,7 @@ We can also pass the `Exception` on after catching it, by doing a blank `raise`.
 
 
 ```python
+# should-raise
 try:
   i = oneover(0)
 except ZeroDivisionError as e:
@@ -78,6 +81,7 @@ Or you can do a `raise … from` (Python 3 only).
 
 
 ```python
+# should-raise
 try:
     i = oneover(0)
 except ZeroDivisionError as e:
@@ -109,6 +113,7 @@ finally:
 You can raise `Exception`s yourself to indicate that something went wrong. It is good practice to use Python's built-in `Exception` objects whenever this makes sense.
 
 ```python
+# should-raise
 def factorial(n):
 
     if n < 0:
@@ -124,6 +129,7 @@ But you can also create custom `Exception` objects.
 
 
 ```python
+# should-raise
 class FactorialError(Exception): pass
 
 

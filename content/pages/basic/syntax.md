@@ -203,6 +203,7 @@ You are 35 years old
 Converting values to another type is dangerous! If you try to convert the value 'this is not a number' to an `int`, you will get an error message, a so-called `Exception`. We discuss how to deal with `Exception`s [later](%url:exceptions%)
 
 ```python
+# should-raise
 age = int('this is not a number')
 ```
 
