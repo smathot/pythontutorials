@@ -50,6 +50,15 @@ This page needs to be reviewed.
 
 
 {{ page.content }}
+
+{% if page.next_title %}
+<div class="osdoc-edit-link">
+	<a role="button" class="btn btn-default" href="{{ page.next_url }}">
+		{{ page.next_title }} >>
+	</a>
+</div>
+{% endif %}
+
 </div><!-- /.entry-content -->
 
 </section>
