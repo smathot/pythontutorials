@@ -25,6 +25,16 @@
           - /numerical/plotting
         - - Statistics
           - /numerical/statistics
+  - - Deep learning
+    - !!python/object/apply:collections.OrderedDict
+      - - - Introduction
+          - /deep-learning/introduction
+        - - Building a basic neural network
+          - /deep-learning/basics
+        - - Classifying images
+          - /deep-learning/image-classification
+        - - Transfer learning
+          - /deep-learning/transfer-learning
   - - Forum
     - http://forum.cogsci.nl/categories/miscellaneous
   - - Blog
