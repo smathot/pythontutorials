@@ -38,7 +38,7 @@ print(user_input)
 
 __Output:__
 
-~~~ .python
+~~~ .bash
 >>> Hello world!
 Hello world!
 ~~~
@@ -195,7 +195,7 @@ print('You are {0} years old'.format(age))
 
 __Output:__
 
-~~~
+~~~bash
 How old are you? 35
 You are 35 years old
 ~~~
