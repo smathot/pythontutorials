@@ -14,7 +14,7 @@ You can simply import `MobileNetV2` from `keras.applications` and create an inst
 If you don't pass any keywords to `MobileNetV2()`, then the network will have random weights; that is, you will get the architecture of the network, but not the weights, and you will therefore have to train it yourself. By specifying `weights='imagenet'`, you indicate that you want the network to be pretrained.
 
 ```python
-from keras.applications import MobileNetV2
+from keras.applications.mobilenet_v2 import MobileNetV2
 
 model = MobileNetV2(weights='imagenet')
 # model.summary()  # Uncomment this to print a long summary!
@@ -52,7 +52,7 @@ data[0] = imread('data/boef.jpg')
 When you load an image with `imread()`, the pixel values are in the 0 - 255 range. However, MobileNetV2 expects pixel values to be in the -1 to 1 range. You could perform this transformation yourself, but Keras also provides preprocessing functions:
 
 ```python
-from keras.applications.mobilenet import preprocess_input
+from keras.applications.mobilenet_v2 import preprocess_input
 
 data = preprocess_input(data)
 ```
@@ -82,7 +82,7 @@ print('Most active neuron: {} ({:.2f}%)'.format(
 However, knowing that neuron 155 became the most active in response to the image of The Boef is not, by itself, very informative, because we also need to know which category this corresponds to. Fortunately, Keras provides a function that automatically maps predictions onto scores for the corresponding categories:
 
 ```python
-from keras.applications.mobilenet import decode_predictions
+from keras.applications.mobilenet_v2 import decode_predictions
 
 for name, desc, score in decode_predictions(predictions)[0]:
     print('- {} ({:.2f}%%)'.format(desc, 100 * score))
@@ -96,4 +96,15 @@ figure:
     id: FigShihTzu
     caption: |
         A Shih-Tzu.
+--%
+
+
+## Video tutorial
+
+%--
+video:
+    id: VidTutorial
+    source: youtube
+    videoid: w8Qx40tHeEM
+    caption: Watch this tutorial on YouTube!
 --%

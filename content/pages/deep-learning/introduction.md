@@ -6,7 +6,14 @@ next_url: %url:basics%
 [TOC]
 
 
-In this set of tutorials, you will learn to work with artificial neural networks using [Keras](https://keras.io/), a Python library for deep learning. But before we dive into the code, let's introduce the basic concepts and terminology of deep learning!
+In this set of tutorials, you will learn to work with artificial neural networks using [Keras](https://keras.io/), a Python library for deep learning. There are four tutorials:
+
+1. Introduction to deep learning (this tutorial)
+2. [Building a basic neural network](%link:basics%)
+3. [Classifying images with MobileNetV2](%link:image-classification%)
+4. [Customizing MobileNetV2 through transfer learning](%link:transfer-learning%)
+
+But before we dive into the code, let's introduce the basic concepts and terminology of deep learning!
 
 
 ## Concepts and terminology
@@ -76,3 +83,14 @@ You can think of TensorFlow as NumPy for deep learning. We won't use TensorFlow 
 [Keras](https://keras.io/) is a high-level API for deep learning. Keras is built on top of TensorFlow, and provides classes and functions that make it really easy to work with neural networks. 
 
 Now let's get started!
+
+
+## Video tutorial
+
+%--
+video:
+    id: VidTutorial
+    source: youtube
+    videoid: rmNTqYGpr6Y
+    caption: Watch this tutorial on YouTube!
+--%

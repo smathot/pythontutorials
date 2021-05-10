@@ -15,7 +15,7 @@ Therefore, in this tutorial, you will learn how to modify and retrain MobileNetV
 We again start by loading MobileNetV2.
 
 ```python
-from keras.applications import MobileNetV2
+from keras.applications.mobilenet_v2 import MobileNetV2
 
 model = MobileNetV2(weights='imagenet')
 ```
@@ -54,7 +54,7 @@ We first read in the female cats, and put them in the first 20 places of the `da
 ```python
 from imageio import imread
 from skimage.transform import resize
-from keras.applications.mobilenet import preprocess_input
+from keras.applications.mobilenet_v2 import preprocess_input
 
 for i in range(0, 20):
     im = imread('data/cats/f{:02d}.jpg'.format(i + 1))
@@ -87,7 +87,7 @@ labels[20:] = 1
 Although MobileNetV2 has not (yet) been trained to distinguish male and female cats, it *has* been trained to recognize cats in general. Therefore, as a sanity check, let's see whether MobileNetV2 indeed categorizes all of our 40 input images as cats. We only get the top prediction for each image. (See [this previous tutorial](%link:image-classification%) if you're unsure how this works.)
 
 ```python
-from keras.applications.mobilenet import decode_predictions
+from keras.applications.mobilenet_v2 import decode_predictions
 
 predictions = model.predict(data)
 for decoded_prediction in decode_predictions(predictions, top=1):
@@ -231,3 +231,14 @@ cat_model2.fit(
 As before, the (regular) accuracy goes up to 1. But crucially, the validation accuracy does not! This means that our model never really learned to distinguish male and female cats; it merely learned to recognize all of the exemplars that we trained it on, without being able to generalize this knowledge to new cats. This is called *overfitting* and often happens when a network is trained with a small dataset and/ or on a difficult task. (Both of which are true here.)
 
 It's just really hard to tell apart male cat from female cats. That's also what Chris Longmore concluded.
+
+
+## Video tutorial
+
+%--
+video:
+    id: VidTutorial
+    source: youtube
+    videoid: 8LjK4knsTRQ
+    caption: Watch this tutorial on YouTube!
+--%

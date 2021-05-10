@@ -77,7 +77,6 @@ model.compile(
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
-
 ```
 
 Now let's look at the model summary:
@@ -138,10 +137,37 @@ Now we can easily tell that for the first five test observations (0, 0.1, 0.2, 0
 
 As mentioned above, it's important to verify a model's predictions using data that the model wasn't actually trained on. This is important because models are prone to *overfitting*, which occurs when a model has learned the specifics of the training data but is still unable to make (correct) predictions for new observations.
 
-We will look at this in more detail in [a later tutorial](%link:transfer-learning%), but for now let's introduce the concept of *validation data*. By specifying the `validation_split` keyword, we can tell the model to set apart some of the data (10% in the example blow) as validation data. This data will not be used for training, and you will see a separate accuracy metric (`val_accuracy`) for this subset of the data. 
+We will look at this in more detail in [a later tutorial](%link:transfer-learning%), but for now let's introduce the concept of *validation data*. By specifying the `validation_split` keyword, we can tell the model to set apart some of the data (10% in the example blow) as validation data. This data will not be used for training, and you will see a separate accuracy metric (`val_accuracy`) for this subset of the data.
+
+We need to start with a fresh, untrained model. So let's first create a new model, copying the code above:
+
+```python
+model = Sequential([
+    Dense(units=8, input_shape=(1,), activation='relu'),
+    Dense(units=2, activation='softmax'),
+])
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+```
+
+And now train our fresh model, this time setting 10% of the data apart for validation!
 
 ```python
 model.fit(x=data, y=labels, epochs=10, verbose=2, validation_split=.1)
 ```
 
 In this case, the validation accuracy is just as high as the regular accuracy, which means that our model does not suffer from overfitting!
+
+
+## Video tutorial
+
+%--
+video:
+    id: VidTutorial
+    source: youtube
+    videoid: XBc3kbel7XY
+    caption: Watch this tutorial on YouTube!
+--%
