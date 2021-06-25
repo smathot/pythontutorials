@@ -6,7 +6,7 @@ Sebastiaan Mathôt <s.mathot@cogsci.nl>
 
 ## About
 
-This repository contains the source for <http://python.cogsci.nl/>, a website with open-source Python tutorials.
+This repository contains the source for <http://pythontutorials.eu/>, a website with open-source Python tutorials.
 
 ## License information
 
