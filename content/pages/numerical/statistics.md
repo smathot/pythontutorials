@@ -5,7 +5,21 @@ title: Statistics with SciPy and Statsmodels
 
 ## Libraries for statistics
 
-[SciPy](https://www.scipy.org/) is a Python package with a large number of functions for numerical computing. It also contains statistical functions, but only for basic statistical tests (t-tests etc.). More advanced statistical tests are provided by [Statsmodels](https://www.statsmodels.org/stable/index.html). Statsmodels is powerful, but not very user-friendly; therefore, the tutorial below shows examples of several commonly used statistical tests.
+
+### SciPy
+
+[SciPy](https://www.scipy.org/) is a Python package with a large number of functions for numerical computing. It also contains statistical functions, but only for basic statistical tests (t-tests etc.).
+
+
+### Statsmodels
+
+More advanced statistical tests are provided by [Statsmodels](https://www.statsmodels.org/stable/index.html). Statsmodels is powerful, but not very user-friendly; therefore, the tutorial below shows examples of several commonly used statistical tests.
+
+
+### Pingouin
+
+[Pingouin](https://pingouin-stats.org/) is a relatively new Python library for statistics. It provides more uniform and user-friendly functions than SciPy and Statsmodels.
+
 
 All datasets used below are taken from the example data included with [JASP](https://jasp-stats.org/), with the exception of the [Zhou et al. (2020) dataset](https://doi.org/10.3758/s13414-020-02048-5) used for the Repeated Measures ANOVA.
 
@@ -27,6 +41,15 @@ dm = io.readtxt('data/matzke_et_al.csv')
 dm_horizontal, dm_fixation = ops.split(dm.Condition, 'Horizontal', 'Fixation')
 t, p = ttest_ind(dm_horizontal.CriticalRecall, dm_fixation.CriticalRecall)
 print('t = {:.4f}, p = {:.4f}'.format(t, p))
+```
+
+You can also use the `ttest()` function from `pingouin`. This also provides a Bayes Factor, for those who are into Bayesian statistics.
+
+```python
+import pingouin as pg
+
+df = pg.ttest(dm_horizontal.CriticalRecall, dm_fixation.CriticalRecall)
+print(df)
 ```
 
 It's always helpful to visualize the results:
@@ -58,6 +81,15 @@ t, p = ttest_rel(dm.Moon, dm.Other)
 print('t = {:.4f}, p = {:.4f}'.format(t, p))
 ```
 
+You can also use the `ttest()` function from `pingouin` and use the `paired` keyword to indicate that this is a paired-samples t-test, as opposed to an independent-samples t-test.
+
+```python
+import pingouin as pg
+
+df = pg.ttest(dm.Moon, dm.Other, paired=True)
+print(df)
+```
+
 And let's visualize the result. Because the measurements of the data are in two separate columns, we cannot easily use Seaborn for plotting. But we can resort to a quick plot with `plt.plot()`.
 
 ```python
@@ -84,6 +116,15 @@ t, p = ttest_1samp(diff, popmean=0)
 print('t = {:.4f}, p = {:.4f}'.format(t, p))
 ```
 
+You can also use the `ttest()` function from `pingouin`. To indicate that this is a one-sample t-test against zero, simply pass 0 as the second argument.
+
+```python
+import pingouin as pg
+
+df = pg.ttest(diff, 0)
+print(df)
+```
+
 ## Regression
 
 ### Correlation / simple linear regression
@@ -98,6 +139,22 @@ dm = io.readtxt('data/adam-sandler.csv')
 slope, intercept, r, p, se = linregress(dm.Freshness, dm['Box Office ($M)'])
 print('Box Office = {:.2f} * Freshness + {:.2f}'.format(slope, intercept))
 print('p = {:.4f}, r = {:.4f}'.format(p, r))
+```
+
+You can also use the `linear_regression()` function from `pingouin`. Here, the intercept and slope simply correspond to the first and second values in the `coef` column.
+
+```python
+import pingouin as pg
+
+df = pg.linear_regression(X=dm.Freshness, y=dm['Box Office ($M)'])
+print(df)
+```
+
+To get the correlation, you can use the `corr` function from `pingouin`.
+
+```python
+df = pg.corr(dm.Freshness, dm['Box Office ($M)'])
+print(df)
 ```
 
 To visualize this relationship, you can use Seaborn's `regplot()` function.
@@ -126,6 +183,15 @@ dm = io.readtxt('data/gpa.csv')
 print(ols('gpa ~ satm + satv', data=dm).fit().summary())
 ```
 
+You can also use the `linear_regression()` function from `pingouin`. The first argument, `X`, now consists of multiple columns (as opposed to a single column when doing a simple linear regression). To select the columns that should be used as predictors, you can simply select them directly from the datamatrix (`dm['satm', 'satv']`).
+
+```python
+import pingouin as pg
+
+df = pg.linear_regression(X=dm['satm', 'satv'], y=dm.gpa)
+print(df)
+```
+
 
 ## ANOVA
 
@@ -146,9 +212,19 @@ df = anova_lm(ols('HeartRate ~ Gender * Group', data=dm).fit())
 print(df)
 ```
 
+You can also use the `anova` function from `pingouin`.
+
+```python
+import pingouin as pg
+
+aov = pg.anova(dv='HeartRate', between=['Gender', 'Group'], data=dm)
+print(aov)
+```
+
 You can visualize this result with Seaborn:
 
 ```python
+from matplotlib import pyplot as plt
 import seaborn as sns
 
 sns.pointplot(x='Group', y='HeartRate', hue='Gender', data=dm)
@@ -167,7 +243,6 @@ Somewhat different most other RM-ANOVA software, the `AnovaRM` class accepts the
 
 
 ```python
-from pandas import pivot_table
 from datamatrix import io
 from statsmodels.stats.anova import AnovaRM
 
@@ -179,6 +254,21 @@ aov = AnovaRM(
     within=['target_match', 'distractor_match'],
     aggregate_func='mean'
 ).fit()
+print(aov)
+```
+
+You can also use the `rm_anova` function from `pingouin`.
+
+
+```python
+import pingouin as pg
+
+aov = pg.rm_anova(
+    dv='search_correct',
+    within=['target_match', 'distractor_match'],
+    subject='subject_nr',
+    data=dm
+)
 print(aov)
 ```
 
