@@ -1,4 +1,4 @@
-title: Statistics with SciPy and Statsmodels
+title: Statistics with SciPy, Statsmodels, and Pingouin
 
 [TOC]
 

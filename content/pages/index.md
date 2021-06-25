@@ -26,7 +26,7 @@ Or do you want to learn about __numerical computing__ with Python?
 1. [NumPy](%url:numpy%)
 2. [DataMatrix](%url:datamatrix%)
 3. [Plotting with Seaborn and Matplotlib](%url:plotting%)
-4. [Statistics with SciPy and Statsmodels](%url:statistics%)
+4. [Statistics with SciPy, Statsmodels, and Pingouin](%url:statistics%)
 
 Or perhaps you're interested in __deep learning__ in Python with Keras?
 
