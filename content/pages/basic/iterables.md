@@ -47,10 +47,11 @@ You can also get multiple elements from a `list` by specifying a *slice*.
 
 
 ```python
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 from_index = 0
-to_index = 6 # Non-inclusive, so until and including 4 (but not 5)!
+to_index = 4 # Non-inclusive, so until and including 'd' (at index 3)
 in_steps_of = 3
-print(prime_numbers[from_index:to_index:in_steps_of])
+print(letters[from_index:to_index:in_steps_of])
 ```
 
 All the parts of a slice are optional, and fall back to the start of the list (for `from_index`), the end of the list (for `to_index`), and steps of 1. So you can get the first two prime numbers by only specifying the `to_index`, like this:
