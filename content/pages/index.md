@@ -37,4 +37,4 @@ Or perhaps you're interested in __deep learning__ in Python with Keras?
 
 Or do you prefer to sit back, watch, and learn?
 
-- Check out the [Python playlist](https://www.youtube.com/playlist?list=PLR-r0edywujd8D-R2Kue1C_wYEK_4Ii71) on YouTube.
+- Check out the [YouTube channel](https://www.youtube.com/sebastiaanmathot)!
