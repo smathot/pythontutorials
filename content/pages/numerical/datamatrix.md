@@ -8,11 +8,11 @@ next_url: %url:plotting%
 
 ## What is DataMatrix?
 
-[DataMatrix](https://datamatrix.cogsci.nl/) is a Python library for working with tabular data, i.e. spreadsheet-like data that consists of named columns and numbered rows. DataMatrix is a light-weight library that allows you to do many things in an intuitive way. (For more advanced functionality, you can use [pandas](https://pandas.pydata.org/).).
+[DataMatrix](https://pydatamatrix.eu/) is a Python library for working with tabular data, i.e. spreadsheet-like data that consists of named columns and numbered rows. DataMatrix is a light-weight library that allows you to do many things in an intuitive way. (For more advanced functionality, you can use [pandas](https://pandas.pydata.org/).).
 
 This tutorial is an abbreviated version of the following page:
 
-- <https://datamatrix.cogsci.nl/basic/>
+- <https://pydatamatrix.eu/basic/>
 
 
 ## Basics
