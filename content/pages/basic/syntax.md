@@ -27,6 +27,21 @@ The *standard output* is the default output channel of your program. If you're u
 But you generally don't have to worry about this: Your output will appear where you expect it to appear.
 
 
+<div class="exercise" id="exercise_print">
+
+<b>Interactive mini exercise</b>
+
+<textarea class="code">
+# - Goal: print "Learning Python is fun!"
+# - Type your solution below and click run to execute
+print("Learning Python is fun!")
+</textarea>
+<div hidden class="solution_output">
+Learning Python is fun!
+</div>
+</div>
+
+
 ### input()
 
 You can read text from the standard input with the `input()` function. (This returns a `str` that you can assign to a variable, as we will discuss below.)

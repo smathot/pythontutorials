@@ -22,8 +22,14 @@
 		<script data-ad-client="ca-pub-9276598827173431" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		{% include "google-analytics.html" %}
 		{% include "cookie-consent.html" %}
+		<script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" integrity="sha512-xwrAU5yhWwdTvvmMNheFn9IyuDbl/Kyghz2J3wQRDR8tyNmT8ZIYOd0V3iPYY/g4XdNPy0n/g0NvqGu9f0fPJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css" integrity="sha512-R6PH4vSzF2Yxjdvb2p2FA06yWul+U0PDDav4b/od/oXf9Iw37zl10plvwOXelrjV2Ai7Eo3vyHeyFUjhXdBCVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js" integrity="sha512-/mavDpedrvPG/0Grj2Ughxte/fsm42ZmZWWpHz1jCbzd5ECv8CB7PomGtw0NAnhHmE/lkDFkRMupjoohbKNA1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	</head>
-	<body>
+	<body onload="brython()">
 		{% include 'cogsci-products.html' %}
 		<!-- Main container than contains everything -->
 		<div class="container cogsci-container osdoc">
@@ -59,5 +65,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="/theme/js/bootstrap.min.js"></script>
 		<script src="/theme/js/osdoc.js"></script>
+		<script type="text/python" src="/theme/py/install_exercises.py"></script>
 	</body>
 </html>
