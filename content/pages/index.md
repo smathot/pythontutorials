@@ -6,7 +6,7 @@ Congratulations, you're about to learn Python!
 
 [Python](http://www.python.org/) is a widely used programming language that is intuitive and easy to learn. From researchers to independent developers to large companies such as Facebook and DropBox: they all rely on Python. And for good reasons.
 
-The goal of this website is to provide an accessible introduction to Python for beginners.
+The goal of this website is to provide an accessible introduction to Python for beginners, through a mix of tutorials and interactive excercises.
 
 If you do not have a Python environment set up yet (or don't even know what this means!) then let's first:
 

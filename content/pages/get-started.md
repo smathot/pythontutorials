@@ -8,7 +8,25 @@ There are many ways in which you can install and use Python. But if you're unsur
 
 ## Python 2 or 3?
 
-There are two main versions of Python: 2 and 3. The recommended version is Python 3, which is newer and actively maintained. Python 2 is still widely used, but only because some Python libraries have not yet been updated to be compatible with Python 3.
+There are two main versions of Python: 2 and 3. The recommended version is Python 3, which is newer and actively maintained. Python 2 is still used occasionnaly, but only because certain Python libraries have not yet been updated to be compatible with Python 3.
+
+
+## Interactive mini exercises in the browser
+
+Most tutorials on this site contain interactive mini exercises. These consist of a problem to solve, and a small editor in which you can enter your solution in the form of Python code. You can click the Run button to execute your code, and the output appears in a box below. In most cases, your solution will be checked automatically.
+
+<div class="exercise" id="exercise_print" markdown="1">
+#### Mini exercise
+
+Click on the Run button to execute the code and solve this mini exercise!
+
+<textarea class="code">
+print('Welcome to PythonTutorials.eu!')
+</textarea>
+<div hidden class="solution_output">Welcome to PythonTutorials.eu!</div>
+</div>
+
+The interactive mini exercises are useful as a learning tool. However, they are of course not suitable for real-life programming, in which case you will need a code editor with a Python environment, such as Rapunzel or Spyder.
 
 
 ## Rapunzel
