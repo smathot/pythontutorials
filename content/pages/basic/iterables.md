@@ -2,13 +2,14 @@ title: Iterables: list, dict, tuple, and set
 next_title: Loops
 next_url: %url:loops%
 
+This tutorial contains eight interactive mini exercises and two review exercises. Try to solve them all!
 
 [TOC]
 
 
 ## Iterables, order, and mutability
 
-In Python, an *iterable* object (or simply an *iterable*) is a collection of elements that you can loop (or *iterate*) through one element at a time. Simply put, an iterable is a list-like object. There are many kinds of iterables, which differ in many ways, including whether they are ordered and mutable:
+In Python, an *iterable* object (or simply an *iterable*) is a collection of elements that you can loop (or *iterate*) through one element at a time. Simply put, an iterable is a list-like (or array-like) object. There are many kinds of iterables, which differ in many ways, including whether they are ordered and mutable:
 
 - An iterable is *ordered* if you can retrieve its elements in a *predictable order*
 - An iterable is *mutable* if you can change which elements it contains
@@ -26,7 +27,18 @@ A `list` is defined as a comma-separated list of values between square brackets:
 ```python
 prime_numbers = [1, 3, 5, 7, 11]
 print(prime_numbers)
+empty_list = []
+print(empty_list)
 ```
+
+<div class="exercise" id="exercise_list" markdown="1">
+#### Mini exercise
+
+Print a `list` that contains the first three letters of the alphabet as three separate elements.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">['a', 'b', 'c']</div>
+</div>
 
 
 ### Getting a single element (indexing)
@@ -35,11 +47,20 @@ To get a single element from a `list`, use the *index* (position) of the element
 
 
 ```python
-print('Prime at index 0: {0}'.format(prime_numbers[0]))
-print('Prime at index 1: {0}'.format(prime_numbers[1]))
-print('Prime at index -4: {0}'.format(prime_numbers[-4]))
+print('First prime number:')
+print(prime_numbers[0])
+print('Last prime number (of our list):')
+print(prime_numbers[-1])
 ```
 
+<div class="exercise" id="exercise_index" markdown="1">
+#### Mini exercise
+
+Create a `list` that contains the first five prime numbers. Print out the second number from this list.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">3</div>
+</div>
 
 ### Getting a range of elements (slicing)
 
@@ -67,6 +88,14 @@ A common way to create a copy of a list to get the *full slice*. (This is equiva
 my_copy = prime_numbers[:]
 ```
 
+<div class="exercise" id="exercise_slice" markdown="1">
+#### Mini exercise
+
+Again create a `list` that contains the first five prime numbers. Print out a slice that contains all numbers from this `list` except for the first and the last one.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">[3, 5, 7]</div>
+</div>
 
 ### len(): counting the number of elements
 
@@ -89,6 +118,14 @@ if 3 in prime_numbers:
     print('Three is prime')
 ```
 
+<div class="exercise" id="exercise_in" markdown="1">
+#### Mini exercise
+
+Again create a `list` with the first five prime numbers. Ask the user for input. Convert this input to `int`, and check whether the resulting number is in our list of prime numbers. If it is, print out 'The number is prime', else print out 'The number is not among the first five prime numbers'. When running the code, enter one of the first five prime numbers to solve the exercise.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">The number is prime</div>
+</div>
 
 ### Modifying a list
 
@@ -96,7 +133,7 @@ A `list` has several common functions for adding or removing elements:
 
 - `list.append(element)` adds an element to the end
 - `list.insert(index, element)` inserts an element at position `index`
-- `element = list.pop()` removes the last element from the list and returns it
+- `element = list.pop()` removes the last element from the list and returns it. You can also specify an index of an element, in which case this element is removed and returned (instead of the last element).
 
 
 ```python
@@ -106,11 +143,18 @@ prime_numbers.append(3) # Etc.
 print(prime_numbers)
 ```
 
-
 For an overview of `list` functions, see:
 
 - <https://docs.python.org/3.6/tutorial/datastructures.html#more-on-lists>
 
+<div class="exercise" id="exercise_pop" markdown="1">
+#### Mini exercise
+
+Again create a `list` with the first five prime numbers. Remove the third number from the list, using either `pop()` or `remove()`. Print out the resulting `list`.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">[1, 5, 7, 11]</div>
+</div>
 
 
 ## dict: an unordered, mutable collection of key-value pairs
@@ -124,10 +168,9 @@ A `dict` is defined as a comma-separated list of key : value mappings between cu
 
 ```python
 ages = {
-    'Jay-Z': 47,
-    'Emanuel Macron': 40
+    'Jay-Z': 52,          # and counting
+    'Emanuel Macron': 44  # and counting
 }
-
 print(ages)
 ```
 
@@ -138,25 +181,42 @@ If you want to get an elements from a `dict`, you do this by specifying a `key`.
 
 
 ```python
-print('Jay-Z is {0} years old'.format(ages['Jay-Z']))
+age_jayz = ages['Jay-Z']
+print(f'Jay-Z is {age_jayz} years old')
 ```
-
 
 Alternatively, you can use `dict.get()`, which allows you to specify a default value in case the key is not in the `dict`.
 
-
 ```python
-print(
-  'Johnny Depp is {0} years old'.format(
-    ages.get('Johnny Depp', 'unknown')
-  )
-)
+age_depp = ages.get('Johnny Depp', 'unknown')
+print(f'Johnny Depp is {age_dep} years old')
 ```
+
+<div class="exercise" id="exercise_dict" markdown="1">
+#### Mini exercise
+
+Define a `dict` of the three [largest cities in the world](https://en.wikipedia.org/wiki/List_of_largest_cities#List), where keys are names and values are population numbers in millions of inhabitants (e.g. 37 for Tokyo). Next, ask the user to enter the name of a city. If the city name is part of the `dict`, print out the population in the following format: 'The population of X is Y million inhabitants'. If the city name is not part of the `dict`, fall back to using 'unknown' for the population value.
+
+When running the code, enter 'Tokyo' to solve the exercise.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">The population of Tokyo is 30 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 31 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 32 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 33 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 34 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 35 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 36 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 37 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 38 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 39 million inhabitants</div>
+<div hidden class="solution_output">The population of Tokyo is 40 million inhabitants</div>
+</div>
 
 
 ## tuple: an ordered, immutable collection of elements
 
-The `tuple` is very similar to a `list`. The main difference between the two types is that a `tuple` is *immutable*, which means that a `tuple` cannot be changed after it has been defined; in other words, there are no functions such as `tuple.append()`, `tuple.pop()`, etc.
+The `tuple` is very similar to a `list`. The main difference between the two types is that a `tuple` is *immutable*, which means that a `tuple` cannot be changed after it has been defined; in other words, there are no functions such as `tuple.append()`, `tuple.pop()`, etc. However, you can concatenate two `tuple`s using the `+` operator, in which case you get a new `tuple` that contains the elements of both of the concatenated `tuple`s.
 
 A `tuple` supports indexing, slicing, `len()` and `in`, as described above for `list`s.
 
@@ -164,11 +224,21 @@ A `tuple` is defined as a comma-separated list of values, optionally surrounded 
 
 
 ```python
-fibonacci = 1, 1, 2, 3, 5, 8
+fibonacci = 1, 1, 2, 3, 5
 # Parentheses are optional unless they are required to avoid ambiguity
-fibonacci = (1, 1, 2, 3, 5, 8)
+fibonacci = (1, 1, 2, 3, 5)
 ```
 
+
+<div class="exercise" id="exercise_tuple" markdown="1">
+#### Mini exercise
+
+Create one `tuple` that contains the first five numbers of the fibonacci series. Create another `tuple` that contains the first five prime numbers. Concatenate the two `tuple`s and print out the result.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">(1, 1, 2, 3, 5, 1, 3, 5, 7, 11)</div>
+<div hidden class="solution_output">(1, 3, 5, 7, 11, 1, 1, 2, 3, 5)</div>
+</div>
 
 ## set: an unordered, mutable collection of unique elements
 
@@ -205,24 +275,37 @@ For more information, see:
 - <https://docs.python.org/3.6/library/stdtypes.html?highlight=set#set>
 
 
-## Exercises
+<div class="exercise" id="exercise_set" markdown="1">
+#### Mini exercise
 
-<div class='info-box' markdown=1>
+Create one `set` that contains the first five numbers of the fibonacci series. Create another `set` that contains the first five prime numbers. Print out all numbers that occur in both sets (i.e. the intersection).
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">{1, 3, 5}</div>
+</div>
+
+## Review exercises
+
+<div class='exercise no-progress' id='exercise_fibonacci' markdown=1>
 
 ### Fibonacci
 
 %-- include: exercises/basic/iterables-1.md --%
 
-[View solution](%url:iterables%-solution-1)
+This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:iterables%-solution-1) to see one solution!
+
+<textarea class="code"></textarea>
 
 </div>
 
-<div class='info-box' markdown=1>
+<div class='exercise no-progress' id='exercise_artists' markdown=1>
 
 ### Best-selling artists
 
 %-- include: exercises/basic/iterables-2.md --%
 
-[View solution](%url:iterables%-solution-2)
+This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:iterables%-solution-2) to see one solution!
+
+<textarea class="code"></textarea>
 
 </div>
