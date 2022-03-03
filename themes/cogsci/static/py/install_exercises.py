@@ -73,7 +73,12 @@ class Exercises():
             elif 'code' in element.classList:
                 code = element
         editor = window.CodeMirror.fromTextArea(code, {'theme': 'monokai'})
-        editor.setSize(None, 100)
+        for cls in code.classList:
+            if cls.startswith('height'):
+                editor.setSize(None, int(cls[6:]))
+                break
+        else:
+            editor.setSize(None, 100)
         run.bind('click', _execute)
         
     def _validate(self, solution_validate, workspace):

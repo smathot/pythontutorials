@@ -189,7 +189,7 @@ Alternatively, you can use `dict.get()`, which allows you to specify a default v
 
 ```python
 age_depp = ages.get('Johnny Depp', 'unknown')
-print(f'Johnny Depp is {age_dep} years old')
+print(f'Johnny Depp is {age_depp} years old')
 ```
 
 <div class="exercise" id="exercise_dict" markdown="1">
@@ -294,7 +294,7 @@ Create one `set` that contains the first five numbers of the fibonacci series. C
 
 This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:iterables%-solution-1) to see one solution!
 
-<textarea class="code"></textarea>
+<textarea class="code height300"></textarea>
 
 </div>
 
@@ -306,6 +306,6 @@ This exercise is not checked automatically, because there are several possible s
 
 This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:iterables%-solution-2) to see one solution!
 
-<textarea class="code"></textarea>
+<textarea class="code height300"></textarea>
 
 </div>

@@ -345,7 +345,7 @@ Ask the user to guess your age! Read a value from the standard input. Convert it
 
 This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:syntax%-solution) to see one solution!
 
-<textarea class="code"></textarea>
+<textarea class="code height300"></textarea>
 
 </div>
 
