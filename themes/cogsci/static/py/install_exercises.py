@@ -56,8 +56,8 @@ class Exercises():
         output.classList.add('output')
         output.style.display = 'none'
         exercise <= output
-        solution_code = None
-        solution_output = None
+        solution_code = []
+        solution_output = []
         solution_validate = None
         for element in exercise.children:
             if 'solution_code' in element.classList:
@@ -65,9 +65,9 @@ class Exercises():
                 for line in element.innerHTML.strip().splitlines():
                     if not line.strip().startswith('#') and line.strip():
                         lines.append(line)
-                solution_code = '\n'.join(lines)
+                solution_code.append('\n'.join(lines))
             elif 'solution_output' in element.classList:
-                solution_output = element.innerHTML.strip().lower()
+                solution_output.append(element.innerHTML.strip().lower())
             elif 'solution_validate' in element.classList:
                 solution_validate = element.innerHTML.strip()
             elif 'code' in element.classList:
@@ -105,8 +105,8 @@ class Exercises():
             output.style.display = 'block'
         if run.style.display == 'none':  # already solved
             return
-        if (solution_output == output_value.lower()
-            or solution_code == code
+        if (output_value.lower() in solution_output
+            or code in solution_code
             or self._validate(solution_validate, workspace)
         ):
             solved.style.display = 'block'
