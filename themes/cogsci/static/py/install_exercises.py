@@ -62,14 +62,14 @@ class Exercises():
         for element in exercise.children:
             if 'solution_code' in element.classList:
                 lines = []
-                for line in element.getInnerHTML().strip().splitlines():
+                for line in element.innerHTML.strip().splitlines():
                     if not line.strip().startswith('#') and line.strip():
                         lines.append(line)
                 solution_code = '\n'.join(lines)
             elif 'solution_output' in element.classList:
-                solution_output = element.getInnerHTML().strip().lower()
+                solution_output = element.innerHTML.strip().lower()
             elif 'solution_validate' in element.classList:
-                solution_validate = element.getInnerHTML().strip()
+                solution_validate = element.innerHTML.strip()
             elif 'code' in element.classList:
                 code = element
         editor = window.CodeMirror.fromTextArea(code, {'theme': 'monokai'})
