@@ -36,8 +36,9 @@ class Exercises():
     def _install_exercise(self, id_):
         def _execute(event):
             self._exercise_execute(editor, output, solution_output,
-                                   solution_code, solution_validate, run,
-                                   solved, incorrect)
+                                   solution_code, solution_validate, 
+                                   solution_prevalidate, run, solved,
+                                   incorrect)
         print(f'Installing exercise {id_}')
         exercise = document[id_]
         run = html.BUTTON('<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Run')
@@ -59,6 +60,7 @@ class Exercises():
         solution_code = []
         solution_output = []
         solution_validate = None
+        solution_prevalidate = None
         for element in exercise.children:
             if 'solution_code' in element.classList:
                 lines = []
@@ -68,6 +70,8 @@ class Exercises():
                 solution_code.append('\n'.join(lines))
             elif 'solution_output' in element.classList:
                 solution_output.append(element.innerHTML.strip().lower())
+            elif 'solution_prevalidate' in element.classList:
+                solution_prevalidate = element.innerHTML.strip()
             elif 'solution_validate' in element.classList:
                 solution_validate = element.innerHTML.strip()
             elif 'code' in element.classList:
@@ -91,12 +95,15 @@ class Exercises():
         return workspace.get('correct', False)
 
     def _exercise_execute(self, editor, output, solution_output, solution_code,
-                          solution_validate, run, solved, incorrect):
+                          solution_validate, solution_prevalidate, run, solved,
+                          incorrect):
         print('Executing code')
         code = editor.getValue().strip()
         buffer = io.StringIO()
         sys.stdout = buffer
         workspace = {}
+        if solution_prevalidate is not None:
+            exec(solution_prevalidate, workspace)
         try:
             exec(code, workspace)
         except Exception as e:

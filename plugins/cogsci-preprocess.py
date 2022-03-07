@@ -84,7 +84,7 @@ class AcademicMarkdownReader(MarkdownReader):
 					+ u'\n'.join([u' '+ s for s in m.group('code').strip().split(u'\n')])
 					+ u'\n--%\n'
 				)
-				# text = text.replace(m.group(0), new_block)
+				text = text.replace(m.group(0), new_block)
 			text = build.MD(text)
 			# Process internal links
 			for m in re.finditer('%link:(?P<link>[\w/-]+)%', text):

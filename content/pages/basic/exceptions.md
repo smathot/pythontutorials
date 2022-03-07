@@ -24,8 +24,7 @@ An `Exception` occurs when there is an error during execution of syntactically v
 
 ```python
 def oneover(i):
-
-  return 1/i
+  return 1 / i
 ```
 
 Calling `oneover(0)` results in a `ZeroDivisionError` (a special kind of `Exception`) because dividing any number by `0` is not allowed:
@@ -59,7 +58,7 @@ except:  # A blank except is not good practice!
 print("I'm still alive!")
 ```
 
-In the example above, if any `Exception` occurs in the block that follows the `try` statement, then the execution of that block is terminated, and the `except` block is executed. Importantly, however, the code continues to run; that is, `try … except …` statements allow you to deal with `Exceptions` gracefully.
+In the example above, if any `Exception` occurs in the block that follows the `try` statement, then the execution of that block is terminated, and the `except` block is executed. Importantly, however, the code continues to run; that is, `try … except …` statements allow you to deal with `Exception`s gracefully.
 
 It is good practice to specify *which* `Exception`s should be caught. For example, `oneover()` triggers a `ZeroDivisionError` error when called with `0` and a `TypeError` called it with a `str` or some other value that doesn't work in a numeric division. Therefore, we can specify that we want to catch only those two `Exception`s, and in addition specify that we want to keep the `Exception` object as the variable `e`. Restricting exception handling in this way avoids masking of errors that we did not anticipate, and which may reflects bugs in our code.
 
@@ -194,10 +193,10 @@ Define a function `capitalize_last_name()` that accepts as argument a string wit
 If something other than a `str` object is passed as an argument, the function should raise a `TypeError`. (Tip: you can use `isistance()` to check whether an object is of a particular type.) If the `str` does not consist of exactly two words, the function should raise a `ValueError`.
 
 <textarea class="code"></textarea>
-<div hidden class="solution_validate">
+<div hidden class="solution_validate height250">
 correct = 1
 try:
-  if capitalize_last_name('marisa tomei') != 'Marisa Tomei':
+  if capitalize_last_name('marisa tomei') != 'Marisa TOMEI':
     correct = 0
   try:
     capitalize_last_name('marisa')

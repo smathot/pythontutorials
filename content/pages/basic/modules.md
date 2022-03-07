@@ -42,7 +42,7 @@ Import the `string` module, and print out [all ASCII letters](https://docs.pytho
 <div hidden class="solution_output">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
 </div>
 
-You can also selectively import the `choice()` function. The downside of this way of importing is that we cannot easily tell anymore that `choice()` is part of the `random` module.
+You can also selectively import the `choice()` function. The downside of this way of importing is that you cannot easily tell anymore that `choice()` is part of the `random` module.
 
 
 ```python
