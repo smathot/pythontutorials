@@ -1,6 +1,7 @@
 title: Exceptions: error handling
-next_title: NumPy
-next_url: %url:numpy%
+
+
+This tutorial contains three interactive mini exercises and one review exercise. Try to solve them all!
 
 
 [TOC]
@@ -34,6 +35,15 @@ Calling `oneover(0)` results in a `ZeroDivisionError` (a special kind of `Except
 oneover(0)
 ```
 
+<div class="exercise" id="exercise_exception" markdown="1">
+#### Mini exercise
+
+A `ValueError` is a special kind of `Exception` that is raised when a function is called with an argument that has the correct type but an incorrect value. Trigger a `ValueError ` by trying to convert the string 'this is not an int' to an `int`.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_output">invalid literal for int() with base 10: 'this is not an int'</div>
+</div>
+
 
 ## Handling `Exception`s
 
@@ -44,12 +54,12 @@ Now let's use a `try … except …` statement to safely catch `Exception`s.
 ```python
 try:
   i = oneover(0)
-except: # A blank except is not preferred!
+except:  # A blank except is not good practice!
   print('Some problem occurred')
 print("I'm still alive!")
 ```
 
-In the example above, if any `Exception` occurs in the block that follows the `try` statement, then the execution of that block is terminated, and the `except` block is executed. Importantly, however, the code continues to run.
+In the example above, if any `Exception` occurs in the block that follows the `try` statement, then the execution of that block is terminated, and the `except` block is executed. Importantly, however, the code continues to run; that is, `try … except …` statements allow you to deal with `Exceptions` gracefully.
 
 It is good practice to specify *which* `Exception`s should be caught. For example, `oneover()` triggers a `ZeroDivisionError` error when called with `0` and a `TypeError` called it with a `str` or some other value that doesn't work in a numeric division. Therefore, we can specify that we want to catch only those two `Exception`s, and in addition specify that we want to keep the `Exception` object as the variable `e`. Restricting exception handling in this way avoids masking of errors that we did not anticipate, and which may reflects bugs in our code.
 
@@ -59,6 +69,20 @@ try:
   i = oneover(0)
 except (TypeError, ZeroDivisionError) as e:
   print('A problem occurred: %s' % e)
+```
+
+You can also handle specify a different way to handle each different kind of `Exception` by having multiple `except` blocks:
+
+
+```python
+try:
+  i = oneover(0)
+except TypeError:
+  # This will be executed when a TypeError is raised
+  print('oneover() expects a float or int')
+except ZeroDivisionError:
+  # This will be executed when a ZeroDivisionError is raised
+  print('oneover() cannot be called with 0')
 ```
 
 
@@ -107,6 +131,24 @@ finally:
     print('This is always executed')
 ```
 
+<div class="exercise" id="exercise_except" markdown="1">
+#### Mini exercise
+
+Create a function called `safe_int()` that takes a single argument `i`. If possible, the function converts `i` to `int` and returns it. If not possible (i.e. if an `Exception` occurs), the function returns `None`.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+correct = 1
+try:
+  if safe_int('10') != 10:
+    correct = 0
+  if safe_int('x') is not None:
+    correct = 0
+except:
+  correct = 0
+</div>
+</div>
+
 
 ## Raising Exceptions
 
@@ -125,7 +167,7 @@ factorial(-1)
 ```
 
 
-But you can also create custom `Exception` objects.
+But you can also create custom `Exception` objects. This allows you to communicate clearly to the user what kind of error occurred.
 
 
 ```python
@@ -144,14 +186,53 @@ factorial(-1)
 ```
 
 
-## Exercises
+<div class="exercise" id="exercise_raise" markdown="1">
+#### Mini exercise
 
-<div class='info-box' markdown=1>
+Define a function `capitalize_last_name()` that accepts as argument a string with a (single) first and a (single) last name, and returns a string in which only the first letter of the first name is uppercase, whereas all letters of the last name are uppercase; in otherwords, 'marisa tomei' becomes 'Marisa TOMEI'. (Tip: use `str.split()` to split a `str` into separate words.)
+
+If something other than a `str` object is passed as an argument, the function should raise a `TypeError`. (Tip: you can use `isistance()` to check whether an object is of a particular type.) If the `str` does not consist of exactly two words, the function should raise a `ValueError`.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+correct = 1
+try:
+  if capitalize_last_name('marisa tomei') != 'Marisa Tomei':
+    correct = 0
+  try:
+    capitalize_last_name('marisa')
+  except ValueError:
+    pass
+  else:
+    correct = 0
+  try:
+    capitalize_last_name(0)
+  except TypeError:
+    pass
+  else:
+    correct = 0
+except:
+  correct = 0
+</div>
+</div>
+
+
+## Review exercise
+
+<div class='exercise no-progress' id='exercise_calculator' markdown=1>
 
 ### An interactive calculator
 
 %-- include: exercises/basic/exceptions.md --%
 
-[View solution](%url:exceptions%-solution)
+This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:exceptions%-solution) to see one solution!
 
+<textarea class="code height300"></textarea>
+
+</div>
+
+This concludes the Python Basics course. Congratulations—you made it to the finish!
+
+<div>
+<a class='btn btn-success btn-large btn-block' href='/'>Go back to the home page</a></p>
 </div>

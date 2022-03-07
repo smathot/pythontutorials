@@ -23,26 +23,6 @@
 <section id="content" class="body">
 <div class="entry-content">
 
-{% if page.uptodate == "false" %}
-<div class="alert alert-warning" role="alert">
-This page has been written for an older version of Learn Python.
-</div>
-{% endif %}
-
-{% if page.reviewed == "false" %}
-<div class="alert alert-info" role="alert">
-This page needs to be reviewed.
-</div>
-{% endif %}
-
-
-{% if page.next_title %}
-<div class="osdoc-edit-link">
-	<a role="button" class="btn btn-primary" href="{{ page.next_url }}">
-		{{ page.next_title }} >>
-	</a>
-</div>
-{% endif %}
 
 {% if page.show_title != "false" %}
 <h1>{{page.title}}</h1>
@@ -52,11 +32,10 @@ This page needs to be reviewed.
 {{ page.content }}
 
 {% if page.next_title %}
-<div class="osdoc-edit-link osdoc-edit-link-bottom">
-	<a role="button" class="btn btn-primary" href="{{ page.next_url }}">
-		{{ page.next_title }} >>
-	</a>
-</div>
+<p>You're done with this section!</p>
+<a role="button" class="btn btn-primary btn-large btn-block" href="{{ page.next_url }}">
+Continue with <b>{{ page.next_title }} >></b>
+</a>
 {% endif %}
 
 </div><!-- /.entry-content -->

@@ -2,6 +2,8 @@ title: Functions
 next_title: Modules
 next_url: %url:modules%
 
+This tutorial contains five interactive mini exercises and two review exercises. Try to solve them all!
+
 
 [TOC]
 
@@ -56,6 +58,20 @@ def pythagoras():
 pythagoras() # Call the function
 ```
 
+<div class="exercise" id="exercise_def" markdown="1">
+#### Mini exercise
+
+(Following-up from the [`zip()` exercise](%url:loops%).) Define a function named `best_selling_artists` that prints out the [four best-selling artists of all time](https://en.wikipedia.org/wiki/List_of_best-selling_music_artists) and the number of records that they sold, with one line per artist in the following format: 'The Beatles sold 600000000.0 records'.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+try:
+  correct = callable(best_selling_artists)
+except:
+  correct = False
+</div>
+</div>
+
 
 ## Arguments and return values
 
@@ -74,6 +90,21 @@ def pythagoras(a, b):
 pythagoras(1, 1)
 ```
 
+<div class="exercise" id="exercise_args" markdown="1">
+#### Mini exercise
+
+As before, define a function named `best_selling_artists`. This time, let the function accept a single argument named `artist` and print the number of record sales for this artist in the following format: 'The Beatles sold 600000000.0 records'. If the artist is not known, use 0 for the number of record sales.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+correct = True
+try:
+  best_selling_artists(artist='boef')
+  best_selling_artists(artist='Madonna')
+except:
+  correct = False
+</div>
+</div>
 
 ### Default function arguments (keywords)
 
@@ -89,6 +120,22 @@ def pythagoras(a=1, b=1):
 
 pythagoras()
 ```
+
+<div class="exercise" id="exercise_keywords" markdown="1">
+#### Mini exercise
+
+As before, define a function named `best_selling_artists` that takes a single argument named `artist`. The function is identical to that of the previous mini exercise, except that `artist` should now have a default value of `None`. If no value for artist is specified when calling the function, the function should ask the user to enter an artist name using the `input()` function.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+try:
+  best_selling_artists()
+  best_selling_artists(artist='Madonna')
+  correct = True
+except:
+  correct = False
+</div>
+</div>
 
 
 ### Return values
@@ -107,6 +154,21 @@ c = pythagoras(a, b)
 print('a = {0}, b = {1}, c = {2}'.format(a, b, c))
 ```
 
+<div class="exercise" id="exercise_return" markdown="1">
+#### Mini exercise
+
+As before, define a function named `best_selling_artists` that takes a single argument named `artist` with a default value of `None`. The function is identical to that of the previous mini exercise, except that the number of record sales should now be returned, rather than printed out.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+try:
+  best_selling_artists() is not None
+  best_selling_artists(artist='Madonna') is not none
+  correct = True
+except:
+  correct = False
+</div>
+</div>
 
 ## Docstrings
 
@@ -120,6 +182,20 @@ def pythagoras(a=1, b=1):
     """
     return (a ** 2 + b ** 2) ** .5
 ```
+
+<div class="exercise" id="exercise_docstring" markdown="1">
+#### Mini exercise
+
+As before, define a function named `best_selling_artists` that takes a single argument named `artist` with a default value of `None` and returns the number of record sales. Add a docstring to the function that concisely describes what the function does.
+
+<textarea class="code"></textarea>
+<div hidden class="solution_validate">
+try:
+  correct = callable(best_selling_artists) and best_selling_artists.__doc__ is not None
+except:
+  correct = False
+</div>
+</div>
 
 
 ## Functions that call functions
@@ -152,24 +228,28 @@ print_long_sides(more_triangles)
 ```
 
 
-## Exercises
+## Review exercises
 
-<div class='info-box' markdown=1>
+<div class='exercise no-progress' id='exercise_factorial_for' markdown=1>
 
 ### Factorial using for
 
 %-- include: exercises/basic/functions-1.md --%
 
-[View solution](%url:functions%-solution-1)
+This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:functions%-solution-1) to see one solution!
+
+<textarea class="code height300"></textarea>
 
 </div>
 
-<div class='info-box' markdown=1>
+<div class='exercise no-progress' id='exercise_factorial_recursion' markdown=1>
 
 ### Factorial using recursion
 
 %-- include: exercises/basic/functions-2.md --%
 
-[View solution](%url:functions%-solution-2)
+This exercise is not checked automatically, because there are several possible solutions. Click [here](%url:functions%-solution-2) to see one solution!
+
+<textarea class="code height300"></textarea>
 
 </div>

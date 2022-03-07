@@ -184,6 +184,7 @@ Go!
 
 
 ```python
+# Source: https://en.wikipedia.org/wiki/List_of_best-selling_music_artists
 artists = 'The Beatles', 'Elvis Presley', 'Michael Jackson', 'Madonna'
 sales = 600e6, 600e6, 350e6, 300e6
 for artist, sold in zip(artists, sales):

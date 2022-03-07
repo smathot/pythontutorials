@@ -26,8 +26,11 @@ print('Welcome to PythonTutorials.eu!')
 <div hidden class="solution_output">Welcome to PythonTutorials.eu!</div>
 </div>
 
-The interactive mini exercises are useful as a learning tool. However, they are of course not suitable for real-life programming, in which case you will need a code editor with a Python environment, such as Rapunzel or Spyder.
+If you want to start learning Python right away, without installing anything, you can skip the rest of this section. However, if you want to use Python for real-life programming, you will need a code editor with a Python environment, such as Rapunzel or Spyder.
 
+<a role="button" class="btn btn-primary btn-large btn-block" href="%url:syntax%">
+Skip the rest and get started with <b>Syntax >></b>
+</a>
 
 ## Rapunzel
 
@@ -68,4 +71,4 @@ figure:
 --%
 
 
-All set up? Then let's begin with exploring the basic Python [syntax](%url:syntax%)!
+All set up? Then let's begin with [Basic Syntax](%url:syntax%)!
