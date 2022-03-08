@@ -3,107 +3,81 @@ import io
 from browser import document, html, window
 
 
-class Exercises():
-    
-    def __init__(self, progress_indicator=True):
-        self._total = 0
-        self._solved = 0
-        for element in document.getElementsByClassName('exercise'):
-            self._install_exercise(element.id)
-            if 'no-progress' in element.classList:
-                continue
-            self._total += 1
-        if self._total and progress_indicator:
-            self._progress = html.DIV()
-            self._progress.classList.add('exercises_progress')
-            document <= self._progress
-            self._update_progress()
-        else:
-            self._progress = None
-        
-    def _update_progress(self):
-        if self._progress is None:
-            return
-        print('Updating progress')
-        if self._solved == self._total:
-            self._progress.classList.add('all_solved')
-            self._progress.html = \
-                '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> All solved!'
-        else:
-            self._progress.html = \
-                f'{self._solved} / {self._total}<br /><small>solved</small>'
+RUN_HTML = '<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Run'
+SOLVED_HTML = '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Solved!'
+INCORRECT_HTML = '<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Not yet, try again!'
+ALL_SOLVED_HTML = '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> All solved!'
 
-    def _install_exercise(self, id_):
-        def _execute(event):
-            self._exercise_execute(editor, output, solution_output,
-                                   solution_code, solution_validate, 
-                                   solution_prevalidate, run, solved,
-                                   incorrect)
+class Exercise:
+    
+    def __init__(self, exercise_manager, id_):
+        
         print(f'Installing exercise {id_}')
-        exercise = document[id_]
-        run = html.BUTTON('<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Run')
-        run.classList.add('btn')
-        run.classList.add('btn-default')
-        exercise <= run
-        solved = html.DIV('<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Solved!')
-        solved.classList.add('solved')
-        solved.style.display = 'none'
-        exercise <= solved
-        incorrect = html.DIV('<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Not yet, try again!')
-        incorrect.classList.add('incorrect')
-        incorrect.style.display = 'none'
-        exercise <= incorrect
-        output = html.PRE()
-        output.classList.add('output')
-        output.style.display = 'none'
-        exercise <= output
-        solution_code = []
-        solution_output = []
-        solution_validate = None
-        solution_prevalidate = None
-        for element in exercise.children:
+        self.solved = False
+        self._id = id_
+        self._exercise_manager = exercise_manager
+        self._exercise = document[id_]
+        self.progress = 'no-progress' not in self._exercise.classList
+        self._run = html.BUTTON(RUN_HTML)
+        self._run.classList.add('btn')
+        self._run.classList.add('btn-default')
+        self._exercise <= self._run
+        self._solved = html.DIV(SOLVED_HTML)
+        self._solved.classList.add('solved')
+        self._solved.style.display = 'none'
+        self._exercise <= self._solved
+        self._incorrect = html.DIV(INCORRECT_HTML)
+        self._incorrect.classList.add('incorrect')
+        self._incorrect.style.display = 'none'
+        self._exercise <= self._incorrect
+        self._output = html.PRE()
+        self._output.classList.add('output')
+        self._output.style.display = 'none'
+        self._exercise <= self._output
+        self._solution_code = []
+        self._solution_output = []
+        self._solution_validate = None
+        self._solution_prevalidate = None
+        for element in self._exercise.children:
             if 'solution_code' in element.classList:
                 lines = []
                 for line in element.innerHTML.strip().splitlines():
                     if not line.strip().startswith('#') and line.strip():
                         lines.append(line)
-                solution_code.append('\n'.join(lines))
+                self._solution_code.append('\n'.join(lines))
             elif 'solution_output' in element.classList:
-                solution_output.append(element.innerHTML.strip().lower())
+                self._solution_output.append(element.innerHTML.strip().lower())
             elif 'solution_prevalidate' in element.classList:
-                solution_prevalidate = element.innerHTML.strip()
+                self._solution_prevalidate = element.innerHTML.strip()
             elif 'solution_validate' in element.classList:
-                solution_validate = element.innerHTML.strip()
+                self._solution_validate = element.innerHTML.strip()
             elif 'code' in element.classList:
-                code = element
-        editor = window.CodeMirror.fromTextArea(code, {'theme': 'monokai'})
-        for cls in code.classList:
+                self._code = element
+        self._editor = window.CodeMirror.fromTextArea(self._code,
+                                                      {'theme': 'monokai'})
+        for cls in self._code.classList:
             if cls.startswith('height'):
-                editor.setSize(None, int(cls[6:]))
+                self._editor.setSize(None, int(cls[6:]))
                 break
         else:
-            editor.setSize(None, 100)
-        run.bind('click', _execute)
+            self._editor.setSize(None, 100)
+        self._run.bind('click', self.execute)
         
-    def _validate(self, solution_validate, workspace):
-        if solution_validate is None:
+    def validate(self, workspace):
+        if self._solution_validate is None:
             return False
-        print('validating solution')
-        print(solution_validate)
-        exec(solution_validate, workspace)
-        print(workspace)
+        print(f'Validating exercise {self._id}')
+        exec(self._solution_validate, workspace)
         return workspace.get('correct', False)
-
-    def _exercise_execute(self, editor, output, solution_output, solution_code,
-                          solution_validate, solution_prevalidate, run, solved,
-                          incorrect):
-        print('Executing code')
-        code = editor.getValue().strip()
+        
+    def execute(self, event=None):
+        print(f'Executing exercise {self._id}')
+        code = self._editor.getValue().strip()
         buffer = io.StringIO()
         sys.stdout = buffer
         workspace = {}
-        if solution_prevalidate is not None:
-            exec(solution_prevalidate, workspace)
+        if self._solution_prevalidate is not None:
+            exec(self._solution_prevalidate, workspace)
         try:
             exec(code, workspace)
         except Exception as e:
@@ -111,23 +85,61 @@ class Exercises():
         sys.stdout = sys.__stdout__
         output_value = buffer.getvalue().strip()
         if not output_value:
-            output.style.display = 'none'
+            self._output.style.display = 'none'
         else:
-            output.textContent = output_value
-            output.style.display = 'block'
-        if run.style.display == 'none':  # already solved
+            self._output.textContent = output_value
+            self._output.style.display = 'block'
+        if self._run.style.display == 'none':  # already solved
             return
-        if (output_value.lower() in solution_output
-            or code in solution_code
-            or self._validate(solution_validate, workspace)
+        if (output_value.lower() in self._solution_output
+            or code in self._solution_code
+            or self.validate(workspace)
         ):
-            solved.style.display = 'block'
-            incorrect.style.display = 'none'
-            run.style.display = 'none'
-            self._solved += 1
-            self._update_progress()
+            self.solved = True
+            self._solved.style.display = 'block'
+            self._incorrect.style.display = 'none'
+            self._run.style.display = 'none'
+            self._exercise_manager.update_progress()
         else:
             incorrect.style.display = 'block'
+    
+
+class ExerciseManager:
+    
+    def __init__(self):
+        self._exercises = []
+        for element in document.getElementsByClassName('exercise'):
+            self._exercises.append(Exercise(self, element.id))
+        if self.total_progress:
+            self._progress = html.DIV()
+            self._progress.classList.add('exercises_progress')
+            document <= self._progress
+            self.update_progress()
+        else:
+            self._progress = None
+    
+    @property
+    def total_progress(self):
+        return sum(e.progress for e in self._exercises)
+        
+    @property
+    def total_solved(self):
+        return sum(e.solved for e in self._exercises if e.progress)
+        
+    @property
+    def all_solved(self):
+        return all(e.solved for e in self._exercises if e.progress)
+        
+    def update_progress(self):
+        if not self.total_progress:
+            return
+        print('Updating progress')
+        if self.all_solved:
+            self._progress.classList.add('all_solved')
+            self._progress.html = ALL_SOLVED_HTML
+        else:
+            self._progress.html = \
+                f'{self.total_solved} / {self.total_progress}<br /><small>solved</small>'
 
 
-exercises = Exercises()
+ExerciseManager()
