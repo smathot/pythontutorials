@@ -9,7 +9,7 @@ The goal of this website is to provide __free, introductory courses to Python__ 
 <div width=50%>
 <p><a class='btn btn-success btn-large btn-block' href='%url:get-started%'>
 <b>&#128035; Python basics</b><br />
-5 chapters with interactive mini exercises and review exercises
+7 chapters with interactive mini exercises and review exercises
 </a></p>
 <p><a class='btn btn-info btn-large btn-block' href='%url:numpy%'>
 <b>&#128202; Numerical computing</b><br />

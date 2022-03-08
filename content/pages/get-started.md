@@ -15,7 +15,7 @@ There are two main versions of Python: 2 and 3. The recommended version is Pytho
 
 Most tutorials on this site contain interactive mini exercises. These consist of a problem to solve, and a small editor in which you can enter your solution in the form of Python code. You can click the Run button to execute your code, and the output appears in a box below. In most cases, your solution will be checked automatically.
 
-<div class="exercise" id="exercise_print" markdown="1">
+<div class="exercise" id="exercise_get_started" markdown="1">
 #### Mini exercise
 
 Click on the Run button to execute the code and solve this mini exercise!

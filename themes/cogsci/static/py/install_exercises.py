@@ -1,12 +1,25 @@
 import sys
 import io
+import json
+import base64
 from browser import document, html, window
+from browser.local_storage import storage
 
 
 RUN_HTML = '<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Run'
 SOLVED_HTML = '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Solved!'
 INCORRECT_HTML = '<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Not yet, try again!'
 ALL_SOLVED_HTML = '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> All solved!'
+RESET_HTML = '<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>'
+
+
+def enc(s):
+    return base64.urlsafe_b64encode(s.encode('utf-8')).decode('utf-8')
+    
+    
+def dec(s):
+    return base64.urlsafe_b64decode(s.encode('utf-8')).decode('utf-8')
+
 
 class Exercise:
     
@@ -14,7 +27,7 @@ class Exercise:
         
         print(f'Installing exercise {id_}')
         self.solved = False
-        self._id = id_
+        self.id = id_
         self._exercise_manager = exercise_manager
         self._exercise = document[id_]
         self.progress = 'no-progress' not in self._exercise.classList
@@ -55,24 +68,92 @@ class Exercise:
                 self._code = element
         self._editor = window.CodeMirror.fromTextArea(self._code,
                                                       {'theme': 'monokai'})
+        self._initial_code = self.code
         for cls in self._code.classList:
             if cls.startswith('height'):
                 self._editor.setSize(None, int(cls[6:]))
                 break
         else:
             self._editor.setSize(None, 100)
+        self.restore()
         self._run.bind('click', self.execute)
+        
+    def restore(self):
+        if self.id not in storage:
+            return
+        try:
+            exercise_info = json.loads(storage[self.id])
+        except Exception as e:
+            print(f'Failed to restore excercise {self.id}: {e!s}')
+            return
+        if not isinstance(exercise_info, dict):
+            print(f'Failed to restore excercise {self.id}: not a dict')
+            return
+        self.code = dec(exercise_info.get('code', ''))
+        output = dec(exercise_info.get('output', ''))
+        if output:
+            self.process_output(output)
+        
+    def store(self):
+        storage[self.id] = json.dumps({'code': enc(self.code),
+                                       'output': enc(self.output)})
         
     def validate(self, workspace):
         if self._solution_validate is None:
             return False
-        print(f'Validating exercise {self._id}')
+        print(f'Validating exercise {self.id}')
         exec(self._solution_validate, workspace)
         return workspace.get('correct', False)
         
+    @property
+    def code(self):
+        return self._editor.getValue().strip()
+        
+    @code.setter
+    def code(self, code):
+        self._editor.setValue(code)
+        
+    @property
+    def output(self):
+        return self._output.textContent
+    
+    @output.setter
+    def output(self, output):
+        self._output.textContent = output
+    
+    def reset(self):
+        self.solved = False
+        self._solved.style.display = 'none'
+        self._run.style.display = 'block'
+        self._incorrect.style.display = 'none'
+        self._output.style.display = 'none'
+        self.code = self._initial_code
+        self.output = ''
+        self.store()
+    
+    def process_output(self, output, workspace={}):
+        if not output:
+            self._output.style.display = 'none'
+        else:
+            self._output.textContent = output
+            self._output.style.display = 'block'
+        if self._run.style.display == 'none':  # already solved
+            return
+        if (output.lower() in self._solution_output
+            or self.code in self._solution_code
+            or self.validate(workspace)
+        ):
+            self.solved = True
+            self._solved.style.display = 'block'
+            self._incorrect.style.display = 'none'
+            self._run.style.display = 'none'
+            self._exercise_manager.update_progress()
+        else:
+            self._incorrect.style.display = 'block'
+        
     def execute(self, event=None):
-        print(f'Executing exercise {self._id}')
-        code = self._editor.getValue().strip()
+        print(f'Executing exercise {self.id}')
+        code = self.code
         buffer = io.StringIO()
         sys.stdout = buffer
         workspace = {}
@@ -83,26 +164,9 @@ class Exercise:
         except Exception as e:
             print(e)
         sys.stdout = sys.__stdout__
-        output_value = buffer.getvalue().strip()
-        if not output_value:
-            self._output.style.display = 'none'
-        else:
-            self._output.textContent = output_value
-            self._output.style.display = 'block'
-        if self._run.style.display == 'none':  # already solved
-            return
-        if (output_value.lower() in self._solution_output
-            or code in self._solution_code
-            or self.validate(workspace)
-        ):
-            self.solved = True
-            self._solved.style.display = 'block'
-            self._incorrect.style.display = 'none'
-            self._run.style.display = 'none'
-            self._exercise_manager.update_progress()
-        else:
-            incorrect.style.display = 'block'
-    
+        self.process_output(buffer.getvalue().strip(), workspace)
+        self.store()
+
 
 class ExerciseManager:
     
@@ -114,6 +178,10 @@ class ExerciseManager:
             self._progress = html.DIV()
             self._progress.classList.add('exercises_progress')
             document <= self._progress
+            self._reset = html.BUTTON(RESET_HTML)
+            self._reset.bind('click', self.reset)
+            self._reset.classList.add('exercises_reset')
+            document <= self._reset
             self.update_progress()
         else:
             self._progress = None
@@ -129,6 +197,11 @@ class ExerciseManager:
     @property
     def all_solved(self):
         return all(e.solved for e in self._exercises if e.progress)
+        
+    def reset(self, event):
+        for e in self._exercises:
+            e.reset()
+        self.update_progress()
         
     def update_progress(self):
         if not self.total_progress:
