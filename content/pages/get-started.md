@@ -3,12 +3,12 @@ next_title: Syntax
 next_url: %url:syntax%
 
 
-There are many ways in which you can install and use Python. But if you're unsure how to get started, the instructions below are a good way to get coding quickly!
+There are many ways in which you can install and use Python. If you're unsure how to get started, the instructions below are a good way to get coding quickly!
 
 
 ## Python 2 or 3?
 
-There are two main versions of Python: 2 and 3. The recommended version is Python 3, which is newer and actively maintained. Python 2 is still used occasionnaly, but only because certain Python libraries have not yet been updated to be compatible with Python 3.
+There are two main versions of Python: 2 and 3. The recommended version is Python 3, which is newer and actively maintained. Python 2 is still used occasionally, but only because certain Python libraries have not yet been updated to be compatible with Python 3.
 
 
 ## Interactive mini exercises in the browser
