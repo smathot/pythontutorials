@@ -310,7 +310,7 @@ Read two values from the standard input. Convert them to `float`, add them up, a
 
 ## If statements
 
-An `if` statement is the most basic form of flow control. It allows you to check whether some condition is `True`, and if so do something. If the condition is `False`, either nothing is done (if there is no `else` block), or something `else` is done:
+An `if` statement is the most basic form of flow control. It allows you to check whether some condition is `True`, and if so do something. If the condition is `False`, either nothing is done (if there is no `else` block), or something `else` is done. If multiple conditions are checked after each other, you can use the `elif` shorthand, which stands for `else if`:
 
 ```python
 # Without else
@@ -321,9 +321,16 @@ if 1 * 1 == 2:
     print('This is not printed')
 else:
     print('One times one does not equal two')
+# With elif
+if 3 * 3 == 8:
+    print('This is not printed')
+elif 3 * 3 == 9:
+    print('Three times three equals nine')
+else:
+    print('This is not printed')
 ```
 
-Here we also see an important aspect of Python syntax: colons and indentation. The `if` and `else` statements are followed by a colon (`:`). This indicates that a block of code will follow that is indented, typically by four spaces (as prescribed by [PEP8]) or a single tab. (But never mix different indentation styles in the same code!) The block ends when the indentation ends. Unlike many other programming languages, Python does not use curly braces or other ways to explicitly indicate the start and end of a block: blocks are defined entirely through indentation.
+Here we also see an important aspect of Python syntax: colons and indentation. The `if`, `elif`, and `else` statements are followed by a colon (`:`). This indicates that a block of code will follow that is indented, typically by four spaces (as prescribed by [PEP8]) or a single tab. (But never mix different indentation styles in the same code!) The block ends when the indentation ends. Unlike many other programming languages, Python does not use curly braces or other ways to explicitly indicate the start and end of a block: blocks are defined entirely through indentation.
 
 
 <div class="exercise" id="exercise_if" markdown="1">
