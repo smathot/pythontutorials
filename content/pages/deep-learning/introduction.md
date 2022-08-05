@@ -62,11 +62,9 @@ A convolutional neural network (CNN) is simply a network that contains at least 
 
 ### How comparable in size are deep neural networks to the human brain?
 
-Currently, even the most complex neural networks are many orders of magnitude smaller than human brains. For example, VGG19, the biggest network that is available as a pre-trained net in Keras (the Python library that we will use for these tutorials) consists of about 140 million parameters, where this number corresponds to the sum of the number of neurons and the number of connections in the network. If we make the simplifying (and almost certainly incorrect) assumption that synapses and neurons in biological brains can similarly thought of as single parameters, then VGG19 is still a million times smaller than the human brain.
+Currently, even the most complex neural networks are smaller than human brains. VGG19, the biggest network that is available as a pre-trained net in Keras (the Python library that we will use for these tutorials) consists of about 140 million parameters, where this number corresponds to the sum of the number of neurons and the number of connections in the network. If we make the simplifying (and almost certainly incorrect) assumption that synapses and neurons in biological brains can similarly thought of as single parameters, then VGG19 is still a million times smaller than the human brain, although it does come close in size to an insect brain.
 
-VGG19 does come close in size to an insect brain though. But despite this rough correspondence in brain size, it makes little sense to compare the cognitive abilities of large neural networks to those of, say, bees. In some ways, modern artificial neural networks are more intelligent than bees, for example when it comes to recognizing objects; but no artificial neural network to date comes close to a bee's ability to flexibly adapt to its environment. 
-
-Who knows though … maybe after following these tutorials you will be able to change that!
+At the time of writing (June 2022), the largest neural networks are so-called Large Language Models, such as OpenAI's [GPT-3](https://openai.com/blog/gpt-3-apps/) and Google's [PaLM](https://ai.googleblog.com/2022/04/pathways-language-model-palm-scaling-to.html). These networks, which have been trained for text prediction (whereas we will focus on image classification), have hundreds of billions of parameters, thus—again making the simplifying assumption that synapses and neurons can be thought of as single parameters!—coming closer to the size of a human brain.
 
 
 ## Deep learning in Python
