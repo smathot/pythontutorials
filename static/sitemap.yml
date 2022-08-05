@@ -35,3 +35,13 @@
           - /deep-learning/image-classification
         - - Transfer learning
           - /deep-learning/transfer-learning
+  - - Video tutorials
+    - !!python/object/apply:collections.OrderedDict
+      - - - Object-oriented programming
+          - /video/object-oriented-programming
+        - - Comprehensions
+          - /video/comprehensions
+        - - Decorators
+          - /video/decorators
+        - - Code quality
+          - /video/code-quality
