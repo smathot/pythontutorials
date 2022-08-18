@@ -1,4 +1,6 @@
 title: Statistics with SciPy, Statsmodels, and Pingouin
+next_title: Time series
+next_url: %url:time-series%
 
 [TOC]
 

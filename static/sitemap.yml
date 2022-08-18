@@ -15,7 +15,7 @@
           - /basic/modules
         - - 'Exceptions: error handling'
           - /basic/exceptions
-  - - Numerical computing
+  - - Data science
     - !!python/object/apply:collections.OrderedDict
       - - - NumPy
           - /numerical/numpy
@@ -25,6 +25,8 @@
           - /numerical/plotting
         - - Statistics
           - /numerical/statistics
+        - - Time series
+          - /numerical/time-series
   - - Deep learning
     - !!python/object/apply:collections.OrderedDict
       - - - Introduction

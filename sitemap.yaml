@@ -6,11 +6,12 @@ Basics:
   Functions: basic/functions
   Modules: basic/modules
   "Exceptions: error handling": basic/exceptions
-Numerical computing:
+Data science:
   NumPy: numerical/numpy
   DataMatrix: numerical/datamatrix
   Plotting: numerical/plotting
   Statistics: numerical/statistics
+  Time series: numerical/time-series
 Deep learning:
   Introduction: deep-learning/introduction
   Building a basic neural network: deep-learning/basics
