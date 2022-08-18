@@ -137,7 +137,7 @@ plt.show()
 
 <div class='info-box' markdown=1>
 
-### Plotting hear-rate distributions in subplots
+### Plotting heart-rate distributions in subplots
 
 %-- include: exercises/numerical/plotting-2.md --%
 

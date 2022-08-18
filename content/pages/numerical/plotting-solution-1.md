@@ -3,6 +3,16 @@ next_title: Plotting
 next_url: %url:plotting%
 
 
+## Plotting rank-ordered ratings for 90s movies
+
+### Exercise
+
+%-- include: exercises/numerical/plotting-1.md --%
+
+
+### Solution
+
+
 ```python
 from matplotlib import pyplot as plt
 from datamatrix import io, operations as ops

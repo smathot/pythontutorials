@@ -2,6 +2,15 @@ title: Plotting: Exercises and Solutions
 next_title: Plotting
 next_url: %url:plotting%
 
+## Plotting heart-rate distributions in subplots
+
+### Exercise
+
+%-- include: exercises/numerical/plotting-2.md --%
+
+
+### Solution
+
 
 ```python
 from matplotlib import pyplot as plt
