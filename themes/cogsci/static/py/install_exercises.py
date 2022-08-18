@@ -173,7 +173,8 @@ class ExerciseManager:
     def __init__(self):
         self._exercises = []
         for element in document.getElementsByClassName('exercise'):
-            self._exercises.append(Exercise(self, element.id))
+            if element.id is not None:
+                self._exercises.append(Exercise(self, element.id))
         if self.total_progress:
             self._progress = html.DIV()
             self._progress.classList.add('exercises_progress')
