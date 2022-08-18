@@ -24,7 +24,9 @@ Other examples of time series are:
 
 ## Libraries for working with time series
 
-In this chapter, we will use [DataMatrix series](https://pydatamatrix.eu/series/). The `datamatrix.SeriesColumn` is a type of column in which each cell is itself a series of values. This chapter assumes that you've already followed the basic [DataMatrix](%url:datamatrix) chapter earlier in this series on data science.
+In this chapter, we will use the datamatrix `SeriesColumn`, which is a type of column in which each cell is itself a series of values. This chapter assumes that you've already followed the basic [DataMatrix](%url:datamatrix) chapter earlier in this series on data science.
+
+- <https://pydatamatrix.eu/series/>
 
 Another commonly used library for working with time series is Pandas, which provides the [`pandas.Series` class](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html). We will not use Pandas for this tutorial.
 
@@ -99,7 +101,7 @@ print(f'Each country has {sm.year.depth} values for year')
 
 Both `gdp` and `year` are a special type of column (`SeriesColumn` objects) that has been designed to represent time series. Specifically, in a series column a single cell doesn't contain a single value, as is the case for regular columns such as `country`, but rather contains multiple values. The `depth` property of a series column indicates how many values there are in each cell. In our case, the depth of the `gdp` and `year` columns is 22, which makes sense because our dataset spans 22 years (2000 until and including 2021).
 
-To avoid confusion: The length of a series column (`len(sm.gdp)`) is equal to the length of the datamatrix and thus reflects the number of rows. The depth of a series column reflects the number of values (or: samples, time points, observations, etc.) in the time series.
+```
 
 We can now plot our dataset in a more useful way by creating a line plot in which the x-axis reflects time (but imperfectly for now!) and each line corresponds to a single country. (The `plottable` property of a series column provides the time-series data in a format that `plt.plot()` understands.)
 
@@ -109,12 +111,53 @@ plt.plot(sm.gdp.plottable)
 plt.show()
 ```
 
-
 <div class="exercise" markdown="1">
 #### Mini exercise
 
 Create a plot like the one above, but with only data from the Scandinavian countries: Denmark (DK), Norway (NO), Sweden (SE), Finland (FI), and Iceland (IS).
 </div>
+
+
+## Understanding the structure of time series
+
+
+A few notes to avoid confusion:
+
+The length of a series column (`len(sm.gdp)`) is equal to the length of the datamatrix and thus reflects the number of rows. The depth of a series column reflects the number of values (or: samples, time points, observations, etc.) in the time series.
+
+You can think of a series column as having 3 dimensions, as opposed to the 2 dimensions of a regular column.
+
+- The first dimension is the column name; this works the same as for a regular column
+- The second dimension is the row number; this works the same for a regular column
+- The third dimension is the sample number within the series; this is unique for series columns
+
+Let's consider some examples. The first row (0) of `gdp` is a numpy array. This array reflect how `gdp` changes over the years for the country corresponding to the first row.
+
+```python
+print(sm.country[0])
+print(sm.gdp[0])
+```
+
+The last value (-1) from the first row (0) of `gdp` is a single value. This value reflects the per-capita GDP in the last year of the time series (2021) for the country corresponding to the first row.
+
+```python
+print(sm.country[0])
+print(sm.gdp[0, -1])
+```
+
+The last value (-1) from all rows (`:`) is a column. This column reflects the per-capita GDP in the last year of the time series (2021) for all rows.
+
+```python
+print(sm.country[:])
+print(sm.gdp[:, -1])
+```
+
+<div class="exercise" markdown="1">
+#### Mini exercise
+
+Print out the per-capita GDP for France (FR) in the years 2006 through 2010.
+</div>
+
 
 
 ## Dealing with missing data
