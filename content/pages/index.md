@@ -21,7 +21,11 @@ The goal of this website is to provide __free, introductory courses to Python__ 
 4 chapters about deep learning with Keras and TensorFlow
 </a>
 </p>
+</div>
 
+Or take a look at this compilation of video tutorials!
+
+<div width=50%>
 <p><a class='btn btn-success btn-large btn-block' href='%url:video/object-oriented-programming%'>
 <b>&#127916; Video tutorials</b><br />
 4 chapters with 24 videos about various topics related to Python programming
