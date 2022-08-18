@@ -12,8 +12,8 @@ The goal of this website is to provide __free, introductory courses to Python__ 
 7 chapters with interactive mini exercises and review exercises
 </a></p>
 <p><a class='btn btn-info btn-large btn-block' href='%url:numpy%'>
-<b>&#128202; Numerical computing</b><br />
-4 chapters about the basics of numerical Python
+<b>&#128202; Data science</b><br />
+5 chapters about data science and numerical Python
 </a>
 </p>
 <p><a class='btn btn-primary btn-large btn-block' href='%url:deep-learning/introduction%'>
