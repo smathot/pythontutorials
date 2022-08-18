@@ -24,7 +24,9 @@ Other examples of time series are:
 
 ## Libraries for working with time series
 
-In this chapter, we will use the datamatrix `SeriesColumn`, which is a type of column in which each cell is itself a series of values. This chapter assumes that you've already followed the basic [DataMatrix](%url:datamatrix) chapter earlier in this series on data science.
+In this chapter, we will use the datamatrix `SeriesColumn`, which is a type of column in which each cell is itself a series of values. This chapter assumes that you've already followed the basic [DataMatrix](%url:datamatrix) chapter earlier in this series on data science. This chapter requires datamatrix 0.15 or later.
+
+For a list of functions for working with series columns, see the datamatrix documentation:
 
 - <https://pydatamatrix.eu/series/>
 
@@ -33,7 +35,7 @@ Another commonly used library for working with time series is Pandas, which prov
 
 ## Loading data
 
-In this chapter, we will analyze the per-capita gross domestic product (GDP) for several European countries in the period 2000 - 2021. Per-capita GDP reflects how many paid services and goods were on average produced by a single person in that country; this is a rough indicator of a country' wealth, although it suffers from many imperfections, such as that services that are provided for (almost) free by the state are largely disregarded.
+In this chapter, we will analyze the per-capita gross domestic product (GDP) for several European countries in the period 2000 - 2021. Per-capita GDP reflects how many paid services and goods were on average produced by a single person in that country; this is a rough indicator of a country's wealth, although it suffers from many imperfections, such as that services that are provided for (almost) free by the state are largely disregarded.
 
 This data comes originally from [EuroStat](https://ec.europa.eu/eurostat/web/main/home), where you can find the raw data as 'Real GDP per capita'. But I have reformatted it slightly for this chapter. You can download the reformatted data [here](/data/eurostat-gdp.csv).
 
@@ -47,7 +49,7 @@ dm = io.readtxt('data/eurostat-gdp.csv')
 print(dm)
 ```
 
-Right now, the structure of the data is such that there is one row for every county and every year, and per-capita GDP is represented as a single value. For example, the first row shows that the per-capita GDP for Albania (`AL`) in the year 2000 was €1700.
+Right now, the structure of the data is such that there is one row for every country and every year, and per-capita GDP is represented as a single value. For example, the first row shows that the per-capita GDP for Albania (`AL`) in the year 2000 was €1700.
 
 
 ## Dealing with invalid data
@@ -101,9 +103,7 @@ print(f'Each country has {sm.year.depth} values for year')
 
 Both `gdp` and `year` are a special type of column (`SeriesColumn` objects) that has been designed to represent time series. Specifically, in a series column a single cell doesn't contain a single value, as is the case for regular columns such as `country`, but rather contains multiple values. The `depth` property of a series column indicates how many values there are in each cell. In our case, the depth of the `gdp` and `year` columns is 22, which makes sense because our dataset spans 22 years (2000 until and including 2021).
 
-```
-
-We can now plot our dataset in a more useful way by creating a line plot in which the x-axis reflects time (but imperfectly for now!) and each line corresponds to a single country. (The `plottable` property of a series column provides the time-series data in a format that `plt.plot()` understands.)
+We can now plot our dataset in a more useful way by creating a line plot in which the x-axis reflects time (imperfectly for now!) and each line corresponds to a single country. (The `plottable` property of a series column provides the time-series data in a format that `plt.plot()` understands.)
 
 
 ```python
@@ -162,9 +162,9 @@ Print out the per-capita GDP for France (FR) in the years 2006 through 2010.
 
 ## Dealing with missing data
 
-The dataset spans the years 2000 until and including 2021. However, data is not available for all countries for all years. Specifically, for some countries data is missing for the first few years. We've already seen an example of that above, when we recoded the invalid data for Romania for 2000 and 2001. But for a few other countries, some data is simply missing altogether, not even represented by empty strings.
+The dataset spans the years 2000 until and including 2021. However, data is not available for all countries for all years. Specifically, for some countries data is missing for the first few years. We've already seen an example of this above, when we recoded the invalid data for Romania for 2000 and 2001. But for a few other countries, some data is simply missing altogether, not even represented by empty strings.
 
-This is characteristic of real-world time-series data: data is often missing and incomplete in multiple ways, and it's therefore important to check your data carefully.
+This is characteristic of real-world time-series data: data is often incomplete in multiple ways, and it's therefore important to check your data carefully.
 
 Let's first print out the first value (`0`) of the `year` column for all (`:`) countries:
 
@@ -184,7 +184,7 @@ The fact that the first `gdp` value for Montenegro corresponds to 2006, whereas 
 
 Imagine that we take the time series for Montenegro, as shown above, and shift all values to the right by 6 positions, thus compensating for the six missing years at the start. The values that fall off the end, which are all `NAN`, should then wrap around so that they move to the start of the series. This is exactly what the `roll()` function from `datamatrix.series`  does!
 
-We can pass a single `shift` value to `roll()`, in which case all rows are shifted by the same amount. But that's not what we want in this case, because we want to shift the row corresponding to Montenegro by 6, whereas we don't want to shift the other rows at all. Fortunately, `roll()` can also takes a sequence of values for the `shift` parameter so that each row can be shifted by a different amount.
+We can pass a single `shift` value to `roll()`, in which case all rows are shifted by the same amount. But that's not what we want here, because we want to shift the row corresponding to Montenegro by 6, whereas we don't want to shift the other rows at all. Fortunately, `roll()` can also takes a sequence of values for the `shift` parameter so that each row can be shifted by a different amount.
 
 In our case, for each row, the shift value is equal to the first value of the `year` series minus 2000. For Montenegro, this results in 6, because the `year` series starts at 2006 (2006 - 2000 = 6). For all other countries, this results in 0, because the `year` series starts at 2000 (2000 - 2000 = 0). We apply `roll()` to both the `gdp` and `year` series:
 
@@ -202,7 +202,7 @@ print(sm)
 <div class="exercise" markdown="1">
 #### Mini exercise
 
-Create a new column that indicates for how many years data is missing for each country. To do this, you can use the `nancount()` function from `datamatrix.series`.
+Create a new column that indicates, for each country separately, the number of years for which data is missing. To do this, you can use the `nancount()` function from `datamatrix.series`.
 </div>
 
 
@@ -221,9 +221,9 @@ plt.legend(title='Country', bbox_to_anchor=(1, 1))
 plt.show()
 ```
 
-The plot above is a bit overwhelming, but it does highlight some general patterns. Notably, GDP tends to increase over time, with the exception of the years following the 2008 financial crisis and a brief dip in 2020 related to the Corona epidemic.
+The plot above is a bit overwhelming, but it does highlight some general patterns. Notably, GDP tends to increase over time, with the exception of the years following the 2008 financial crisis and a brief dip in 2020 related to the corona epidemic.
 
-Let's simplify the data to getter a better picture. Specifically, let's get the mean per-capita GDP over the 2000 - 2021 period for each country separately. We can use the `reduce()` function from `datamatrix.series` to do this. To 'reduce' is a somewhat technical term for the general concept of taking a series of values and 'reducing' it to a single value. By default, this happens by taking the mean while ignoring NAN values.
+Let's simplify the data to getter a better picture. Specifically, let's get the mean per-capita GDP over the 2000 - 2021 period for each country separately. We can use the `reduce()` function from `datamatrix.series` to do this. To 'reduce' is a somewhat technical term for the general concept of taking a series of values and 'reducing' it to a single value. By default, this happens by taking the mean.
 
 To avoid confusion: `srs.reduce(sm.gdp)` gives the mean per-capita GDP for each country averaged over years, whereas `sm.gdp.mean` (which we used above for plotting) gives the mean GDP for each year averaged over countries.
 
