@@ -1,4 +1,4 @@
-title: NumPy
+title: Working with NumPy arrays
 next_title: DataMatrix
 next_url: %url:datamatrix%
 

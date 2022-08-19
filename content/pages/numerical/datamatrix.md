@@ -1,4 +1,4 @@
-title: DataMatrix
+title: Working with tabular data using DataMatrix
 next_title: Plotting
 next_url: %url:plotting%
 

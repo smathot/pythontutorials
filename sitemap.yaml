@@ -7,6 +7,7 @@ Basics:
   Modules: basic/modules
   "Exceptions: error handling": basic/exceptions
 Data science:
+  Introduction: numerical/introduction
   NumPy: numerical/numpy
   DataMatrix: numerical/datamatrix
   Plotting: numerical/plotting

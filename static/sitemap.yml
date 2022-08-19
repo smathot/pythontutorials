@@ -17,7 +17,9 @@
           - /basic/exceptions
   - - Data science
     - !!python/object/apply:collections.OrderedDict
-      - - - NumPy
+      - - - Introduction
+          - /numerical/introduction
+        - - NumPy
           - /numerical/numpy
         - - DataMatrix
           - /numerical/datamatrix

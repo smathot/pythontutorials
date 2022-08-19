@@ -24,7 +24,7 @@ Other examples of time series are:
 
 ## Libraries for working with time series
 
-In this chapter, we will use the datamatrix `SeriesColumn`, which is a type of column in which each cell is itself a series of values. This chapter assumes that you've already followed the basic [DataMatrix](%url:datamatrix) chapter earlier in this series on data science. This chapter requires datamatrix 0.15 or later.
+In this chapter, we will use the datamatrix `SeriesColumn`, which is a type of column in which each cell is itself a series of values. This chapter assumes that you've already followed the basic [DataMatrix](%url:datamatrix) chapter earlier in this series on data science.
 
 For a list of functions for working with series columns, see the datamatrix documentation:
 

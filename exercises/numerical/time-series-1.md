@@ -1,4 +1,4 @@
-Take the datamatrix (`sm`) that you have constructed during this chapter. During the period that this dataset spans, two major crises occurred: the the 2008 financial crisis and the 2020 corona crisis.
+Take the datamatrix (`sm`) that you have constructed during this chapter. During the period that this dataset spans, two major crises occurred: the 2008 financial crisis and the 2020 corona crisis.
 
 First, quantify the impact of both crises on the per-capita GDP of each country. For the 2008 financial crisis, the impact can be quantified as the difference between per-capita GDP in 2009 and 2007. For the corona crisis, the impact can be quantified as the difference between 2020 and 2019.
 
