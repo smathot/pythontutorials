@@ -1,5 +1,5 @@
-Get started: get-started
-Basics:
+Python Basics:
+  Introduction: basic/introduction
   Syntax: basic/syntax
   "Iterables: list, dict, and tuple": basic/iterables
   "Loops: for and while": basic/loops

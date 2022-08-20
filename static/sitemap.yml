@@ -1,9 +1,9 @@
 !!python/object/apply:collections.OrderedDict
-- - - Get started
-    - /get-started
-  - - Basics
+- - - Python Basics
     - !!python/object/apply:collections.OrderedDict
-      - - - Syntax
+      - - - Introduction
+          - /basic/introduction
+        - - Syntax
           - /basic/syntax
         - - 'Iterables: list, dict, and tuple'
           - /basic/iterables

@@ -7,7 +7,7 @@ Congratulations, you're about to learn Python!
 The goal of this website is to provide __free, introductory courses to Python__ with a mix of __tutorials__ and __interactive excercises__. No need to sign up for an account! So let's get started with one of the three courses!
 
 <div width=50%>
-<p><a class='btn btn-success btn-large btn-block' href='%url:get-started%'>
+<p><a class='btn btn-success btn-large btn-block' href='%url:basic/introduction%'>
 <b>&#128035; Python basics</b><br />
 7 chapters with interactive mini exercises and review exercises
 </a></p>

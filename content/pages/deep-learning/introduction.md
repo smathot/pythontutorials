@@ -6,14 +6,19 @@ next_url: %url:basics%
 [TOC]
 
 
-In this set of tutorials, you will learn to work with artificial neural networks using [Keras](https://keras.io/), a Python library for deep learning. There are four tutorials:
+## About this course
 
-1. Introduction to deep learning (this tutorial)
-2. [Building a basic neural network](%link:basics%)
-3. [Classifying images with MobileNetV2](%link:image-classification%)
-4. [Customizing MobileNetV2 through transfer learning](%link:transfer-learning%)
+In this course, which consists of four chapters, you will learn to work with artificial neural networks using [Keras](https://keras.io/), a Python library for deep learning. You will learn how to build and train a small neural network from scratch, how to use large, pretrained neural networks, and how to modify pretrained networks for your own purpose.
 
 But before we dive into the code, let's introduce the basic concepts and terminology of deep learning!
+
+
+%--
+figure:
+ id: FigOctopus
+ source: octopus-teacher.png
+ caption: Your mysterious octopus teacher
+--%
 
 
 ## Concepts and terminology
@@ -80,7 +85,15 @@ You can think of TensorFlow as NumPy for deep learning. We won't use TensorFlow 
 
 [Keras](https://keras.io/) is a high-level API for deep learning. Keras is built on top of TensorFlow, and provides classes and functions that make it really easy to work with neural networks. 
 
-Now let's get started!
+
+## Course overview
+
+Now let's get started! This course consists of four chapters. Each chapter builds on the previous chapters, so it is recommended to follow the chapters in order!
+
+1. Introduction to deep learning (this chapter)
+2. [Building a basic neural network](%link:basics%)
+3. [Classifying images with MobileNetV2](%link:image-classification%)
+4. [Customizing MobileNetV2 through transfer learning](%link:transfer-learning%)
 
 
 ## Video tutorial
