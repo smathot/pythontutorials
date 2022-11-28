@@ -43,7 +43,7 @@ Different operating systems also use different naming conventions for home folde
 Luckily, Python avoids you from having to worry about these differences: no matter with operating system you are using, you can use the `\` path separator and `~` (or `Path.home()`) to refer to the home folder. Python will make sure that these paths are correctly interpreted on all operating systems.
 
 
-## The pathlib.Path class
+## The pathlib module and the Path class
 
 The `Path` class from the [`pathlib` module](https://docs.python.org/3/library/pathlib.html) provides an intuitive way work with files and folders. Let's create a `Path` object that corresponds to the `coding/python/` folder. We use a relative path and assume that my home folder is the current working directory.
 
@@ -56,7 +56,7 @@ print(py_exercises)
 You can concatenate Path objects using the `/` operator. For example, we can create a new `Path` object that corresponds to `exercises1.py` like so:
 
 ```python
-py_exercise1 = py_exercises / Path('exercise1.py`)
+py_exercise1 = py_exercises / Path('exercise1.py')
 ```
 
 
@@ -81,7 +81,7 @@ jl_exercises = Path('coding/julia')
 print(jl_exercises.exists())
 ```
 
-And then we use the `mkdir()` function to turn this non-existing path into an actual folder:
+And then we use the `mkdir()` function to turn this non-existing path into an actual folder.
 
 ```python
 jl_exercises.mkdir()
@@ -96,16 +96,72 @@ jl_exercise1.touch()
 print(jl_exercise1.exists())
 ```
 
+Most common operations related to files and folders can be handled by the `Path` class. However, there is one common scenario that the `Path` class *cannot* handle: deleting folders that are not empty. For example, if we would try to delete the `coding/julia` folder that we created above, then we would get an `OSError` because the directory isn't empty (it contains `exercise1.jl`):
+
+```python
+# should-raise
+jl_exercises.rmdir()
+```
+
+To recursively delete the folder, that is, to delete the folder and everything inside it, you need to use `rmtree()` from the [`shutil` module](https://docs.python.org/3/library/shutil.html) instead.
+
+```python
+import shutil
+shutil.rmtree(jl_exercises)
+print(jl_exercises.exists())
+```
 
 
 ## Reading and writing files
 
+
 ### Text files
+
+Earlier in this tutorial, we created `py_exercise1`, which is a `Path` object that corresponds to the file `exercise1.py`. Let's see how you can read the contents of this file in the easiest way possible, using the `Path.read_text()` function:
+
+```python
+print(f'The contents of {py_exercise1} are:')
+contents = py_exercise1.read_text()
+print(contents)
+```
+
+Writing to text files is almost as easy as reading from them:
+
+
+```python
+contents = 'Define a factorial function using recursion!'
+py_exercise2 = Path('coding/python/exercise2.py')
+py_exercise2.write_text(contents)
+```
+
+Be careful! Calling `Path.write_text()` will create a new file and open it for writing, so the previous contents of the file are lost. If you want to add text to an existing file without erasing its contents, you need to use a slightly more verbose approach, using a `with` context and `Path.open('a')` to indicate that you want to open the file in 'append' mode:
+
+```python
+with py_exercise2.open('a') as fd:
+    fd.write('\nThis line will be appended to the file')
+```
+
+For the purpose of being able to append text to a file, it is not crucial to understand what a `with` context is exactly. However, if you want to fully understand the code above, take a look at [this page of the Python docs](https://docs.python.org/3/reference/compound_stmts.html#with).
 
 
 ### Binary (non-text) files
 
+Python makes a distinction between text (`str` objects) and binary (`bytes` objects) data. Of course, text also consists of bytes, but there is an additional layer on top of it, namely the character encoding that specifies how bytes should be translated into human-readable text, which does not exist for binary data.
 
+Images are binary files. Say that we want to read a photo of De Boef, which you will meet later on in the deep-learning tutorial on [classifying images](%link:image-classification%). We can do this as follows:
+
+```python
+img = Path('data/boef.jpg')
+contents = img.read_bytes()
+print(f'File contents are of type {type(contents)}')
+```
+
+To write binary data to a file, simply call `Path.write_bytes()`:
+
+```python
+img_copy = Path('copy-of-boef.jpg')
+img_copy.write_bytes(contents)
+```
 
 
 ## Review exercises
