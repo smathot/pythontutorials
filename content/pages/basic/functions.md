@@ -2,7 +2,26 @@ title: Functions
 next_title: Modules
 next_url: %url:modules%
 
-This tutorial contains five interactive mini exercises and two review exercises. Try to solve them all!
+
+<div class="learning-goals" markdown="1">
+Functions are blocks of code that you can call elsewhere in your code. Functions are one of the most important concepts in programming, so let's learn all about them!
+{.summary}
+
+In this chapter, you will learn
+{.header}
+
+- What functions are
+- How to use the `def` statement to define a function
+- How to pass arguments and keywords to functions
+- About return values
+- About functions that call functions (recursion)
+
+Test yourself
+{.header}
+
+- Five interactive mini exercises
+- Two review exercises
+</div>
 
 
 [TOC]

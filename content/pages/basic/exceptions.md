@@ -1,4 +1,27 @@
 title: Exceptions: error handling
+next_title: Files and folders
+next_url: %url:files-and-folders%
+
+
+<div class="learning-goals" markdown="1">
+An important programming skill is knowing how to deal with errors. In Python, errors are called `Exceptions`. Let's learn what these are!
+{.summary}
+
+You will learn
+{.header}
+
+- What a `SyntaxError` is
+- What an `Exception` is
+- How to use the `try … except …` statements to handle errors
+- How to use the `else … finally …` statements for advanced error handling
+- How to use the `raise` keyword to indicate errors
+
+Test yourself
+{.header}
+
+- Three interactive mini exercises
+- One review exercise
+</div>
 
 
 This tutorial contains three interactive mini exercises and one review exercise. Try to solve them all!
@@ -228,10 +251,4 @@ This exercise is not checked automatically, because there are several possible s
 
 <textarea class="code height300"></textarea>
 
-</div>
-
-This concludes the Python Basics course. Congratulations—you made it to the finish!
-
-<div>
-<a class='btn btn-success btn-large btn-block' href='/'>Go back to the home page</a></p>
 </div>

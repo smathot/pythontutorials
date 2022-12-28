@@ -3,7 +3,26 @@ next_title: Iterables
 next_url: %url:iterables%
 
 
-This tutorial contains eight interactive mini exercises and one review exercise. Try to solve them all!
+<div class="learning-goals" markdown="1">
+The syntax of a programming language such as a Python is like the grammar of a regular language. Let's start by learning the most important rules of the language!
+{.summary}
+
+In this chapter, you will learn
+{.header}
+
+- The rules (syntax) of the Python language
+- How to get user input and print output
+- How to add code comments
+- How to work with variables
+- The most common variable types
+- How to use if statements
+
+Test yourself
+{.header}
+
+- Eight interactive mini exercises
+- One review exercise
+</div>
 
 
 [TOC]

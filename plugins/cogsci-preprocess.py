@@ -60,7 +60,7 @@ class AcademicMarkdownReader(MarkdownReader):
         self._source_path = source_path
         self._md = Markdown(
             extensions=[
-                TocExtension(toc_depth=3),
+                TocExtension(toc_depth=3, title='Contents'),
                 'markdown.extensions.tables',
                 'markdown.extensions.meta',
                 'markdown.extensions.extra',

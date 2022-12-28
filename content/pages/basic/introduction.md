@@ -3,15 +3,27 @@ next_title: Syntax
 next_url: %url:syntax%
 
 
+Python is a widely used programming language that is intuitive and easy to learn. From researchers to independent developers to large companies such as Facebook and DropBox: they all rely on Python. And for good reasons!
+
+In this course, which consists of eight chapters, you will learn how to program in Python! You will start with the syntax, which are the rules of grammar for a programming language, and from there work your way towards more advanced features of the language. At the end of this course, you will have a solid understanding of Python, and you will be ready to apply that understanding to specific topics, such as software development and data science!
+
+
+<div class="learning-goals" markdown="1">
+
+In this course, you will learn
+{.header}
+
+- The rules (syntax) of the Python language
+- How to structure your code with loops and functions
+- How to import modules
+- How to handle errors in your code
+- How to work with files and folders
+
+</div>
+
+
 [TOC]
 
-
-## About this course
-
-
-In this course, which consists of seven chapters, you will learn how to program in Python! You will start with the syntax, which are the rules of grammar for a programming language, and from there work your way towards more advanced features of the language. At the end of this course, you will have a solid understanding of Python, and you will be ready to apply that understanding to specific topics, such as software development and data science!
-
-Let's start by getting you set up, That is, let's see how you can install and use Python, and which version of Python you should use.
 
 %--
 figure:
@@ -20,6 +32,10 @@ figure:
  caption: Your friendly Python teacher
 --%
 
+
+## Installing and using Python
+
+Let's start by getting you set up, That is, let's see how you can install and use Python, and which version of Python you should use.
 
 
 ## Python 2 or 3?
@@ -72,7 +88,7 @@ figure:
 
 
 
-### Anaconda
+### Spyder / Anaconda
 
 Anaconda is a Python distribution that comes with many useful packages pre-installed. Notably, it comes with [Spyder](https://www.spyder-ide.org/) pre-installed, which is another popular code editor for Python.
 
@@ -93,7 +109,7 @@ figure:
 
 ## Course overview
 
-All set up? Then let's get started! This course consists of seven chapters. Each chapter builds on the previous chapters, so it is recommended to follow the chapters in order.
+All set up? Then let's get started! This course consists of eight chapters. Each chapter builds on the previous chapters, so it is recommended to follow the chapters in order.
 
 1. Introduction to Python (this chapter)
 2. [Syntax](%link:syntax%)
@@ -102,3 +118,4 @@ All set up? Then let's get started! This course consists of seven chapters. Each
 5. [Functions](%link:functions%)
 6. [Modules](%link:modules%)
 7. [Exceptions: error handling](%link:exceptions%)
+8. [Files and folders](%link:files-and-folders%)

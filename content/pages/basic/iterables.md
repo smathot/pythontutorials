@@ -2,7 +2,27 @@ title: Iterables: list, dict, tuple, and set
 next_title: Loops
 next_url: %url:loops%
 
-This tutorial contains eight interactive mini exercises and two review exercises. Try to solve them all!
+
+<div class="learning-goals" markdown="1">
+Iterables are list-like objects that contain other objects. These kinds of objects are used heavily in Python, so let's learn how to work with them!
+{.summary}
+
+In this chapter, you will learn
+{.header}
+
+- What an iterable object is
+- What indexing is
+- What slicing is
+- About the built-in iterable types: list, dict, tuple, and set
+- How to work with the built-in iterables
+
+Test yourself
+{.header}
+
+- Eight interactive mini exercises
+- Two review exercises
+</div>
+
 
 [TOC]
 

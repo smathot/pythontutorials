@@ -2,7 +2,24 @@ title: Modules
 next_title: Exceptions
 next_url: %url:exceptions%
 
-This tutorial contains two interactive mini exercises and two review exercises. Try to solve them all!
+
+<div class="learning-goals" markdown="1">
+Modules provide additional functionality. There are thousands of Python modules! Let's see how you can use all that functionality in your code.
+{.summary}
+
+In this chapter, you will learn
+{.header}
+
+- About the Python standard library
+- How to use the `import` statement to import modules
+
+Test yourself
+{.header}
+
+- Two interactive mini exercises
+- Two review exercises
+</div>
+
 
 [TOC]
 
@@ -90,6 +107,20 @@ Finally, the `import` statement allows you to rename the imported modules or fun
 # Not preferred
 import random as rnd
 print(rnd.choice(prime_numbers))
+```
+
+## Installing additional modules with pip
+
+There are also many modules that are not part of the Python standard library, that is, modules that are not included with Python by default. Fortunately, it's easy to install these additional modules with `pip`, the __P__ackage __I__nstaller for __P__ython. `pip` installs packages from the Python Package Index, or PyPI, which is like an app-store for Python packages. Almost every Python package that exists is available from there:
+
+- <https://pypi.org/>
+
+`pip` is a command-line that is included with Python. If you're using a code editor with a Python environment, such as Rapunzel or Spyder, the easiest to call pip is simply by entering a `pip` command in the Python console. (This works because the code editor recognizes that a `pip` command is not Python code, but rather a call to the `pip` application.)
+
+To install a package, simply execute `pip install` followed by the name of the package. For example, to install [DataMatrix](%url:datamatrix%), a package for working with tabular data, which you may meet later in the data-science course, run:
+
+```
+pip install datamatrix
 ```
 
 

@@ -3,7 +3,25 @@ next_title: Functions
 next_url: %url:functions%
 
 
-This tutorial contains seven interactive mini exercises and two review exercises. Try to solve them all!
+<div class="learning-goals" markdown="1">
+Loops are a way to repeat blocks of code. Loops are a crucial part of programming, so let's see how they work!
+{.summary}
+
+In this chapter, you will learn
+{.header}
+
+- What a for loop is
+- What a while loop is
+- How to use the continue keyword
+- How to use the break keyword
+- About useful functions for working with loops
+
+Test yourself
+{.header}
+
+- Seven interactive mini exercises
+- Two review exercises
+</div>
 
 
 [TOC]

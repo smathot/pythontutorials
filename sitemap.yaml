@@ -6,6 +6,7 @@ Python Basics:
   Functions: basic/functions
   Modules: basic/modules
   "Exceptions: error handling": basic/exceptions
+  "Files and folders": basic/files-and-folders
 Data science:
   Introduction: numerical/introduction
   NumPy: numerical/numpy
