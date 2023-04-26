@@ -2,7 +2,7 @@ title: Files and folders
 
 
 <div class="learning-goals" markdown="1">
-Files and folders are the building blocks of computer data! Knowing how to programmatically navigate the file system and how to read from and write to files is a crucial skills. So let's learn how to do this!
+Files and folders are the building blocks of computer data! Knowing how to programmatically navigate the file system and how to read from and write to files is a crucial skill. So let's learn how to do this!
 {.summary}
 
 In this chapter, you will learn

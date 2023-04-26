@@ -4,7 +4,7 @@ next_url: %url:iterables%
 
 
 <div class="learning-goals" markdown="1">
-The syntax of a programming language such as a Python is like the grammar of a regular language. Let's start by learning the most important rules of the language!
+The syntax of a programming language such as Python is like the grammar of a regular language. Let's start by learning the most important rules of the language!
 {.summary}
 
 In this chapter, you will learn
