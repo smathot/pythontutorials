@@ -91,6 +91,20 @@ def build_live_sitemap(d):
     return sitemap
 
 
+def build_seo_sitemap(d):
+
+    sitemap = []
+    for pagename, entry in d.items():
+        if isseparator(pagename) or entry in [None, '']:
+            continue
+        if isinstance(entry, dict):
+            sitemap += build_seo_sitemap(entry)
+            continue
+        if not entry.startswith('http'):
+            sitemap.append(ROOT + '/' + entry + SUFFIX)
+    return sitemap
+
+
 def main():
 
     with open('sitemap.yaml') as f:
@@ -102,6 +116,9 @@ def main():
     with open(u'static/sitemap.yml', u'w') as fd:
         yaml.dump(sitemap, fd, default_flow_style=False)
     print('Generated live sitemap')
+    with open('static/seo-sitemap.txt', 'w') as fd:
+        fd.write('\n'.join(build_seo_sitemap(d)) + '\n')
+    print('Generated seo sitemap')
 
 if __name__ == '__main__':
     main()
