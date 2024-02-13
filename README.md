@@ -1,6 +1,6 @@
 # Learning Python
 
-Copyright 2018-2023
+Copyright 2018-2024
 
 Sebastiaan Mathôt <s.mathot@cogsci.nl>
 
