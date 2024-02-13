@@ -24,7 +24,7 @@ figure:
 Before you get started, you need to install several libraries that you will use (either directly or indirectly) during the course. You can do this with `pip`:
 
 ```text
-pip install numpy scipy matplotlib seaborn statsmodels pandas pingouin python-datamatrix prettytable fastnumbers openpyxl
+pip install numpy scipy matplotlib seaborn statsmodels pandas pingouin datamatrix prettytable fastnumbers openpyxl
 ```
 
 Or with `conda`:
